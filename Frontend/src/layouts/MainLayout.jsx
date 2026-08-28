@@ -18,7 +18,11 @@ export default function MainLayout() {
     user?.role === "STAFF"
       ? [
           ...baseNavItems,
-          { to: "/staff/appointments", label: "Manage Appointments", end: false },
+          {
+            to: "/staff/appointments",
+            label: "Manage Appointments",
+            end: false,
+          },
         ]
       : baseNavItems;
 
