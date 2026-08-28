@@ -113,7 +113,9 @@ export default function ParkingBooking() {
     <div className="mx-auto max-w-lg space-y-6">
       <div>
         <Link
-          to={floor ? `/parking/floor/${encodeURIComponent(floor)}` : "/parking"}
+          to={
+            floor ? `/parking/floor/${encodeURIComponent(floor)}` : "/parking"
+          }
           className="text-sm font-medium text-brand-600 hover:underline"
         >
           {floor ? `← Back to ${floor}` : "← Back to parking"}
