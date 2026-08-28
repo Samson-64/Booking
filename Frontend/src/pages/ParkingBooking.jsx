@@ -23,6 +23,7 @@ for (let h = 0; h < 24; h++) {
 export default function ParkingBooking() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const floor = searchParams.get("floor");
   const [space, setSpace] = useState(null);
   const [spacesLoading, setSpacesLoading] = useState(true);
 
@@ -112,10 +113,10 @@ export default function ParkingBooking() {
     <div className="mx-auto max-w-lg space-y-6">
       <div>
         <Link
-          to="/parking"
+          to={floor ? `/parking/floor/${encodeURIComponent(floor)}` : "/parking"}
           className="text-sm font-medium text-brand-600 hover:underline"
         >
-          ← Back to parking
+          {floor ? `← Back to ${floor}` : "← Back to parking"}
         </Link>
         <h1 className="mt-2 text-2xl font-bold text-gray-900">
           {spacesLoading
@@ -125,9 +126,7 @@ export default function ParkingBooking() {
               : "Parking Space"}
         </h1>
         {space?.location && (
-          <p className="text-sm text-gray-500">
-            {space?.level ? `${space.level}` : space.location}
-          </p>
+          <p className="text-sm text-gray-500">{space.location}</p>
         )}
       </div>
 
