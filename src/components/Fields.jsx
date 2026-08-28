@@ -1,7 +1,15 @@
 const inputStyles =
   "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-teal-500 focus:outline-none focus:ring-3 focus:ring-teal-500/15 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed shadow-2xs";
 
-export function Input({ label, id, type = "text", error, helperText, icon, ...props }) {
+export function Input({
+  label,
+  id,
+  type = "text",
+  error,
+  helperText,
+  icon,
+  ...props
+}) {
   return (
     <div className="space-y-1.5">
       {label && (
@@ -22,13 +30,17 @@ export function Input({ label, id, type = "text", error, helperText, icon, ...pr
           id={id}
           type={type}
           className={`${inputStyles} ${icon ? "pl-10" : ""} ${
-            error ? "border-rose-300 focus:border-rose-500 focus:ring-rose-500/15" : ""
+            error
+              ? "border-rose-300 focus:border-rose-500 focus:ring-rose-500/15"
+              : ""
           }`}
           {...props}
         />
       </div>
       {error && <p className="text-xs font-medium text-rose-600">{error}</p>}
-      {helperText && !error && <p className="text-xs text-slate-400">{helperText}</p>}
+      {helperText && !error && (
+        <p className="text-xs text-slate-400">{helperText}</p>
+      )}
     </div>
   );
 }
@@ -62,4 +74,3 @@ export function Select({ label, id, error, children, icon, ...props }) {
     </div>
   );
 }
-
