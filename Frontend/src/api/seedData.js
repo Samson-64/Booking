@@ -52,60 +52,6 @@ export const SEED_SPACES = [
   { id: 'sp-p06', name: 'P-06', level: 'Surge 2', location: 'Surge 2' },
 ]
 
-export function demoDateStr() {
-  const d = new Date()
-  const mm = String(d.getMonth() + 1).padStart(2, '0')
-  const dd = String(d.getDate() + 1).padStart(2, '0')
-  return `${d.getFullYear()}-${mm}-${dd}`
-}
-
-// Existing demo bookings (mirror of the old DB seed).
 export function buildSeedBookings() {
-  const demoDate = demoDateStr()
-  return [
-    {
-      id: 'ap-seed01',
-      userId: 'u-alice',
-      personId: 'p-john',
-      type: 'APPOINTMENT',
-      reference: 'AP-SEED01',
-      date: demoDate,
-      startTime: '10:00',
-      endTime: '10:30',
-      status: 'CONFIRMED',
-    },
-    {
-      id: 'ap-seed02',
-      userId: 'u-alice',
-      personId: 'p-david',
-      type: 'APPOINTMENT',
-      reference: 'AP-SEED02',
-      date: demoDate,
-      startTime: '09:00',
-      endTime: '10:00',
-      status: 'CONFIRMED',
-    },
-    // {
-    //   id: 'pk-seed01',
-    //   userId: 'u-bob',
-    //   parkingSpaceId: 'sp-p01',
-    //   type: 'PARKING',
-    //   reference: 'PK-SEED01',
-    //   date: demoDate,
-    //   startTime: '10:00',
-    //   endTime: '12:00',
-    //   status: 'CONFIRMED',
-    // },
-    // {
-    //   id: 'pk-seed02',
-    //   userId: 'u-alice',
-    //   parkingSpaceId: 'sp-p02',
-    //   type: 'PARKING',
-    //   reference: 'PK-SEED02',
-    //   date: demoDate,
-    //   startTime: '10:00',
-    //   endTime: '12:00',
-    //   status: 'CANCELLED',
-    // },
-  ]
+  return []
 }
