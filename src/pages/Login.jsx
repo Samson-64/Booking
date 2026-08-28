@@ -3,11 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, apiErrorMessage } from "../auth/AuthContext";
 import Button from "../components/Button";
 import {
-  CalendarDays,
+  // CalendarDays,
   KeyRound,
   Mail,
   User,
   ArrowRight,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
 export default function Login() {
@@ -21,6 +23,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -50,7 +53,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-900 px-4 py-12 selection:bg-teal-500 selection:text-white relative overflow-hidden">
+    <div className="flex min-h-screen items-center justify-center  px-4 py-12 selection:bg-teal-500 selection:text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-teal-500/10 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
@@ -58,28 +61,25 @@ export default function Login() {
       <div className="relative w-full max-w-md space-y-6">
         {/* Brand Header */}
         <div className="text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-500 text-white shadow-xl shadow-teal-500/20 mb-4">
+          {/* <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-500 text-white shadow-xl shadow-teal-500/20 mb-4">
             <CalendarDays className="h-7 w-7" />
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            Medibook <span className="text-teal-400 font-medium">& Parking</span>
+          </div> */}
+          <h1 className="text-2xl font-bold tracking-tight  dark:text-black sm:text-3xl">
+            Packing Portal
           </h1>
-          <p className="mt-1 text-xs text-slate-400">
-            Intelligent healthcare scheduling and facility management
-          </p>
         </div>
 
         {/* Card */}
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/90 backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
+        <div className=" border border-slate-800 bg-slate-900/90 backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
           {/* Mode Switcher Tabs */}
-          <div className="mb-6 grid grid-cols-2 gap-1 rounded-2xl bg-slate-950/80 p-1.5 border border-slate-800">
+          <div className="mb-6 grid grid-cols-2 gap-1  bg-slate-950/80 p-1.5 border border-slate-800">
             <button
               type="button"
               onClick={() => {
                 setMode("login");
                 setError("");
               }}
-              className={`rounded-xl py-2 text-xs font-semibold transition-all cursor-pointer ${
+              className={` py-2 text-xs font-semibold transition-all cursor-pointer ${
                 mode === "login"
                   ? "bg-slate-800 text-white shadow-sm"
                   : "text-slate-400 hover:text-slate-200"
@@ -93,7 +93,7 @@ export default function Login() {
                 setMode("register");
                 setError("");
               }}
-              className={`rounded-xl py-2 text-xs font-semibold transition-all cursor-pointer ${
+              className={` py-2 text-xs font-semibold transition-all cursor-pointer ${
                 mode === "register"
                   ? "bg-slate-800 text-white shadow-sm"
                   : "text-slate-400 hover:text-slate-200"
@@ -114,12 +114,12 @@ export default function Login() {
                   <input
                     id="name"
                     type="text"
-                    placeholder="e.g. Dr. Jane Smith"
+                    placeholder="firstname lastname"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                     autoComplete="name"
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                    className="w-full border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
                   />
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                  className="w-full border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
                 />
               </div>
             </div>
@@ -152,16 +152,27 @@ export default function Login() {
                 <KeyRound className="absolute left-3.5 top-3 h-4 w-4 text-slate-500" />
                 <input
                   id="password"
-                  type="password"
-                  placeholder="••••••••"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   autoComplete={
                     mode === "login" ? "current-password" : "new-password"
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                  className="w-full border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
               </div>
             </div>
 
@@ -189,24 +200,32 @@ export default function Login() {
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
-                onClick={() => handleQuickLogin("alice@example.com", "password123")}
+                onClick={() =>
+                  handleQuickLogin("alice@example.com", "password123")
+                }
                 className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-left text-xs transition-colors hover:border-teal-500/50 hover:bg-slate-800 cursor-pointer"
               >
                 <div>
                   <div className="font-semibold text-slate-200">Alice</div>
-                  <div className="text-[10px] text-slate-400">Patient / Client</div>
+                  <div className="text-[10px] text-slate-400">
+                    Patient / Client
+                  </div>
                 </div>
                 <ArrowRight className="h-3 w-3 text-slate-500" />
               </button>
 
               <button
                 type="button"
-                onClick={() => handleQuickLogin("carol@example.com", "password123")}
+                onClick={() =>
+                  handleQuickLogin("carol@example.com", "password123")
+                }
                 className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-left text-xs transition-colors hover:border-indigo-500/50 hover:bg-slate-800 cursor-pointer"
               >
                 <div>
                   <div className="font-semibold text-slate-200">Carol</div>
-                  <div className="text-[10px] text-indigo-400">Staff Doctor</div>
+                  <div className="text-[10px] text-indigo-400">
+                    Staff Doctor
+                  </div>
                 </div>
                 <ArrowRight className="h-3 w-3 text-slate-500" />
               </button>
@@ -217,4 +236,3 @@ export default function Login() {
     </div>
   );
 }
-

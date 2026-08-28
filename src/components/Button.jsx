@@ -23,7 +23,7 @@ export default function Button({
     primary:
       "bg-teal-600 text-white shadow-sm shadow-teal-700/20 hover:bg-teal-500 focus-visible:ring-teal-500",
     gradient:
-      "bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 hover:bg-indigo-700 focus-visible:ring-indigo-500",
+      "bg-indigo-600 text-white shadow-sm hover:bg-indigo-700 focus-visible:ring-indigo-500",
     secondary:
       "bg-white text-slate-700 border border-slate-200/80 shadow-2xs hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 focus-visible:ring-slate-400",
     dark:
