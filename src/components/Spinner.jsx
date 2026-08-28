@@ -1,4 +1,4 @@
-export default function Spinner({ label = "Loading…" }) {
+function Spinner({ label = "Loading…" }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-12 text-slate-500">
       <div className="relative flex h-9 w-9 items-center justify-center">
@@ -30,3 +30,4 @@ export default function Spinner({ label = "Loading…" }) {
   );
 }
 
+export default Spinner;

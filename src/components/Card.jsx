@@ -1,4 +1,4 @@
-export default function Card({
+function Card({
   title,
   subtitle,
   children,
@@ -36,3 +36,4 @@ export default function Card({
   );
 }
 
+export default Card;

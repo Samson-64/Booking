@@ -1,6 +1,6 @@
 import { AlertCircle } from "lucide-react";
 
-export default function ErrorState({ message, onRetry }) {
+function ErrorState({ message, onRetry }) {
   return (
     <div className="flex items-start gap-3 rounded-2xl border border-rose-200/80 bg-rose-50/70 p-4 text-rose-800">
       <AlertCircle className="h-5 w-5 shrink-0 text-rose-600 mt-0.5" />
@@ -19,3 +19,4 @@ export default function ErrorState({ message, onRetry }) {
   );
 }
 
+export default ErrorState;

@@ -20,7 +20,7 @@ const dotColors = {
   indigo: "bg-indigo-500",
 };
 
-export default function Badge({ color = "gray", dot = false, size = "md", children, className = "" }) {
+function Badge({ color = "gray", dot = false, size = "md", children, className = "" }) {
   const sizeClasses = size === "sm" ? "px-2 py-0.5 text-xs" : "px-2.5 py-1 text-xs";
   return (
     <span
@@ -34,3 +34,4 @@ export default function Badge({ color = "gray", dot = false, size = "md", childr
   );
 }
 
+export default Badge;

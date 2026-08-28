@@ -1,6 +1,6 @@
 import { Inbox } from "lucide-react";
 
-export default function EmptyState({
+function EmptyState({
   title = "No items found",
   message = "Try adjusting your filters or create a new entry.",
   icon = <Inbox className="h-8 w-8 text-slate-400" />,
@@ -20,3 +20,4 @@ export default function EmptyState({
   );
 }
 
+export default EmptyState;
