@@ -5,6 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Parking from "./pages/Parking";
+import ParkingFloor from "./pages/ParkingFloor";
 import ParkingBooking from "./pages/ParkingBooking";
 import Appointments from "./pages/Appointments";
 import MyBookings from "./pages/MyBookings";
@@ -25,6 +26,7 @@ function App() {
           >
             <Route path="/" element={<Dashboard />} />
             <Route path="/parking" element={<Parking />} />
+            <Route path="/parking/floor/:floor" element={<ParkingFloor />} />
             <Route path="/parking/book/:id" element={<ParkingBooking />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/my-bookings" element={<MyBookings />} />
