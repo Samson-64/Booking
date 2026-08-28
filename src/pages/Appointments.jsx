@@ -264,7 +264,7 @@ export default function Appointments() {
                         <div
                           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white transition-transform group-hover:scale-105 ${
                             isSelected
-                              ? "bg-gradient-to-tr from-teal-600 to-emerald-500"
+                              ? "bg-teal-600"
                               : "bg-slate-700"
                           }`}
                         >
@@ -504,7 +504,7 @@ function Confirmation({ success, onReset }) {
     <div className="mx-auto max-w-lg animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Top Header Banner */}
-        <div className="bg-gradient-to-br from-teal-600 to-emerald-600 p-8 text-center text-white">
+        <div className="bg-teal-600 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>

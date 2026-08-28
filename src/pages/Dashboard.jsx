@@ -154,7 +154,7 @@ export default function Dashboard() {
       {/* ================= METRIC STAT CARDS ROW ================= */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Dark hero card (like inspiration 1) */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-teal-950 p-5 text-white shadow-md">
+        <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-5 text-white shadow-md">
           <div className="flex items-start justify-between">
             <span className="text-xs font-medium uppercase tracking-wider text-slate-300">
               Today's Schedule
@@ -404,9 +404,7 @@ export default function Dashboard() {
                       <div className="flex items-center gap-3">
                         <div
                           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
-                            isAppt
-                              ? "bg-gradient-to-tr from-indigo-500 to-teal-500"
-                              : "bg-gradient-to-tr from-teal-500 to-emerald-500"
+                            isAppt ? "bg-indigo-600" : "bg-teal-600"
                           }`}
                         >
                           {initial}
@@ -445,7 +443,7 @@ export default function Dashboard() {
                   <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-3">
                     <button
                       onClick={() => setSelectedBooking(b)}
-                      className="flex-1 rounded-xl bg-gradient-to-r from-teal-600 to-teal-700 py-2 text-xs font-semibold text-white shadow-2xs hover:from-teal-500 hover:to-teal-600 transition-all cursor-pointer"
+                      className="flex-1 rounded-xl bg-teal-600 py-2 text-xs font-semibold text-white shadow-2xs hover:bg-teal-500 transition-all cursor-pointer"
                     >
                       View Details
                     </button>

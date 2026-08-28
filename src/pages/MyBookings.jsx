@@ -177,9 +177,7 @@ export default function MyBookings() {
                   {/* Avatar Icon */}
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-2xs ${
-                      isAppt
-                        ? "bg-gradient-to-tr from-teal-600 to-emerald-500"
-                        : "bg-gradient-to-tr from-indigo-600 to-blue-500"
+                      isAppt ? "bg-teal-600" : "bg-indigo-600"
                     }`}
                   >
                     {isAppt ? (

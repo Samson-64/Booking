@@ -296,7 +296,7 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
     <div className="animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Header */}
-        <div className="bg-gradient-to-br from-teal-600 to-emerald-600 p-8 text-center text-white">
+        <div className="bg-teal-600 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>

@@ -116,7 +116,7 @@ export default function ParkingFloor() {
                       <div
                         className={`flex h-11 w-11 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
                           isAvail
-                            ? "bg-gradient-to-tr from-teal-600 to-emerald-500"
+                            ? "bg-teal-600"
                             : "bg-slate-400"
                         }`}
                       >
