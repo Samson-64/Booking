@@ -1,0 +1,6 @@
+{
+  "name": "Booking System",
+  "description": "A comprehensive appointment and parking booking management application.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
