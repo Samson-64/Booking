@@ -1,9 +1,3 @@
-// localStorage-backed data store for the offline/mock mode.
-//
-// Holds users and bookings. Seed data is merged with any persisted overrides
-// so that new bookings/registrations survive page reloads. The seed bookings
-// are date-relative (they live "tomorrow"), so we re-anchor them each load.
-
 import {
   SEED_SPACES,
   SEED_PEOPLE,
