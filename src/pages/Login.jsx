@@ -6,7 +6,6 @@ import {
   KeyRound,
   Mail,
   User,
-  ArrowRight,
   Eye,
   EyeOff,
 } from "lucide-react";
