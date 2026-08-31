@@ -90,7 +90,7 @@ export default function StaffAppointments() {
             </span>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Review incoming patient consultation requests, approve pending bookings, or mark appointments completed.
+            Review incoming booking requests, approve pending bookings, or mark appointments completed.
           </p>
         </div>
       </div>
