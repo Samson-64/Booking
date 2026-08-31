@@ -103,6 +103,41 @@ export default function Login() {
             </button>
           </div>
 
+          {/* Account Type Toggle (register mode only) */}
+          {mode === "register" && (
+            <div className="mb-6 grid grid-cols-2 gap-1 bg-slate-950/80 p-1.5 border border-slate-800">
+              <button
+                type="button"
+                onClick={() => {
+                  setAccountType("client");
+                  setPosition("");
+                  setError("");
+                }}
+                className={`flex items-center justify-center gap-2 py-2 text-xs font-semibold transition-all cursor-pointer ${
+                  accountType === "client"
+                    ? "bg-slate-800 text-white shadow-sm"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                <UserRound className="h-3.5 w-3.5" /> I am a Client
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAccountType("specialist");
+                  setError("");
+                }}
+                className={`flex items-center justify-center gap-2 py-2 text-xs font-semibold transition-all cursor-pointer ${
+                  accountType === "specialist"
+                    ? "bg-slate-800 text-white shadow-sm"
+                    : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                <Users className="h-3.5 w-3.5" /> Provider
+              </button>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === "register" && (
               <div>
