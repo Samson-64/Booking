@@ -9,6 +9,7 @@ import ParkingFloor from "./pages/ParkingFloor";
 import ParkingBooking from "./pages/ParkingBooking";
 import MyBookings from "./pages/MyBookings";
 import StaffAppointments from "./pages/StaffAppointments";
+import SpecialistDashboard from "./pages/SpecialistDashboard";
 
 // Redirect to /login (remembering where the user was headed) if signed out.
 function ProtectedRoute() {
@@ -20,6 +21,16 @@ function ProtectedRoute() {
   return <Outlet />;
 }
 
+// Route-index helper: everyone sees the dashboard, but specialists get their
+// own dashboard as the landing page.
+function HomeRedirect() {
+  const { user } = useAuth();
+  if (user?.role === "SPECIALIST") {
+    return <Navigate to="/specialist" replace />;
+  }
+  return <Dashboard />;
+}
+
 export default function App() {
   return (
     <Routes>
@@ -27,7 +38,8 @@ export default function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<HomeRedirect />} />
+          <Route path="/specialist" element={<SpecialistDashboard />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/parking" element={<Parking />} />
           <Route path="/parking/floor/:floor" element={<ParkingFloor />} />
