@@ -125,6 +125,27 @@ export default function Login() {
               </div>
             )}
 
+            {mode === "register" && accountType === "specialist" && (
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold text-slate-300">
+                  Position / Specialty
+                </label>
+                <div className="relative">
+                  <Users className="absolute left-3.5 top-3 h-4 w-4 text-slate-500" />
+                  <input
+                    id="position"
+                    type="text"
+                    placeholder="e.g. Consultant, Trainer, Technician"
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value)}
+                    required
+                    autoComplete="organization-title"
+                    className="w-full border border-slate-700 bg-slate-950/60 pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                  />
+                </div>
+              </div>
+            )}
+
             <div>
               <label className="mb-1.5 block text-xs font-semibold text-slate-300">
                 Email Address
