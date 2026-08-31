@@ -17,11 +17,24 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const TIME_OPTIONS = [];
-for (let h = 0; h < 24; h++) {
-  for (const m of ["00", "30"]) {
-    TIME_OPTIONS.push(`${String(h).padStart(2, "0")}:${m}`);
+function allTimeOptions() {
+  const opts = [];
+  for (let h = 0; h < 24; h++) {
+    for (const m of ["00", "30"]) {
+      opts.push(`${String(h).padStart(2, "0")}:${m}`);
+    }
   }
+  return opts;
+}
+
+function timeOptionsForDate(selectedDate) {
+  const all = allTimeOptions();
+  if (selectedDate !== todayLocalStr()) return all;
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const rounded = Math.ceil(currentMinutes / 30) * 30;
+  const minTime = `${String(Math.floor(rounded / 60)).padStart(2, "0")}:${String(rounded % 60).padStart(2, "0")}`;
+  return all.filter((t) => t >= minTime);
 }
 
 export default function ParkingBooking() {
@@ -33,8 +46,9 @@ export default function ParkingBooking() {
   const [spacesLoading, setSpacesLoading] = useState(true);
 
   const [date, setDate] = useState(searchParams.get("date") || todayLocalStr());
-  const [startTime, setStartTime] = useState("09:00");
-  const [endTime, setEndTime] = useState("10:00");
+  const initialOpts = timeOptionsForDate(searchParams.get("date") || todayLocalStr());
+  const [startTime, setStartTime] = useState(initialOpts[0] || "09:00");
+  const [endTime, setEndTime] = useState(initialOpts[1] || allTimeOptions()[allTimeOptions().indexOf(initialOpts[0]) + 1] || "10:00");
 
   const [availability, setAvailability] = useState(null);
   const [checking, setChecking] = useState(false);
@@ -70,6 +84,10 @@ export default function ParkingBooking() {
     setSpacesLoading(true);
     setAvailability(null);
     setError("");
+    const opts = timeOptionsForDate(next);
+    setStartTime(opts[0] || "09:00");
+    const nextIdx = allTimeOptions().indexOf(opts[0]) + 1;
+    setEndTime(allTimeOptions()[nextIdx] || opts[0] || "10:00");
   }
 
   async function checkAvailability() {
@@ -184,7 +202,7 @@ export default function ParkingBooking() {
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
               >
-                {TIME_OPTIONS.map((t) => (
+                {timeOptionsForDate(date).map((t) => (
                   <option key={t} value={t}>
                     {t}
                   </option>
@@ -195,7 +213,7 @@ export default function ParkingBooking() {
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
               >
-                {TIME_OPTIONS.filter((t) => t > startTime).map((t) => (
+                {allTimeOptions().filter((t) => t > startTime).map((t) => (
                   <option key={t} value={t}>
                     {t}
                   </option>
