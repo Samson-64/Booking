@@ -19,7 +19,7 @@ import {
   Clock,
   User,
   Mail,
-  Stethoscope,
+  Users,
 } from "lucide-react";
 
 const TABS = [
