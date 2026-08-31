@@ -128,7 +128,7 @@ export default function StaffAppointments() {
       {error && <ErrorState message={error} />}
 
       {appointments === null ? (
-        <Spinner label="Loading clinical schedule…" />
+        <Spinner label="Loading schedule…" />
       ) : filtered.length === 0 ? (
         <EmptyState
           title={`No ${tab.toLowerCase()} appointments`}
@@ -145,7 +145,7 @@ export default function StaffAppointments() {
                 {/* Left info */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">
-                    <Stethoscope className="h-6 w-6" />
+                    <Users className="h-6 w-6" />
                   </div>
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
@@ -153,7 +153,7 @@ export default function StaffAppointments() {
                         {appt.person?.name}
                       </h3>
                       <Badge color="blue" size="xs">
-                        {appt.person?.position || "Specialist"}
+                        {appt.person?.position || "Provider"}
                       </Badge>
                       <StatusBadge status={appt.status} />
                     </div>
@@ -161,7 +161,7 @@ export default function StaffAppointments() {
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
                       <span className="flex items-center gap-1 font-semibold text-slate-800">
                         <User className="h-3.5 w-3.5 text-slate-400" />
-                        Patient: {appt.user?.name}
+                        Client: {appt.user?.name}
                       </span>
                       <span className="flex items-center gap-1 text-slate-600">
                         <Mail className="h-3.5 w-3.5 text-slate-400" />
