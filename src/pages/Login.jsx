@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 export default function Login() {
-  const { login, register } = useAuth();
+  const { login, register, registerSpecialist } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
