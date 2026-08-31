@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, apiErrorMessage } from "../auth/AuthContext";
 import Button from "../components/Button";
 import {
-  // CalendarDays,
   KeyRound,
   Mail,
   User,
