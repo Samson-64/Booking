@@ -188,7 +188,11 @@ export default function Login() {
               variant="gradient"
               className="w-full justify-center py-2.5"
             >
-              {mode === "login" ? "Sign In to Portal" : "Create Account"}
+              {mode === "login"
+                ? "Sign In to Portal"
+                : accountType === "specialist"
+                ? "Create Provider Account"
+                : "Create Account"}
             </Button>
           </form>
 
