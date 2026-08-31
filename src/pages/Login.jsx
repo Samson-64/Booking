@@ -35,6 +35,8 @@ export default function Login() {
     try {
       if (mode === "login") {
         await login(email, password);
+      } else if (accountType === "specialist") {
+        await registerSpecialist(name, email, password, position);
       } else {
         await register(name, email, password);
       }
