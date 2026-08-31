@@ -61,9 +61,6 @@ export default function Login() {
       <div className="relative w-full max-w-md space-y-6">
         {/* Brand Header */}
         <div className="text-center">
-          {/* <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-500 text-white shadow-xl shadow-teal-500/20 mb-4">
-            <CalendarDays className="h-7 w-7" />
-          </div> */}
           <h1 className="text-2xl font-bold tracking-tight  dark:text-black sm:text-3xl">
             Packing Portal
           </h1>
