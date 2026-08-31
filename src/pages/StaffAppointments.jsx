@@ -83,7 +83,7 @@ export default function StaffAppointments() {
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-              Staff Portal: Clinical Schedule
+              Staff Portal: Schedule
             </h1>
             <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 border border-indigo-200">
               Staff Authorization Active
