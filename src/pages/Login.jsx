@@ -195,46 +195,6 @@ export default function Login() {
                 : "Create Account"}
             </Button>
           </form>
-
-          {/* Quick Demo Logins */}
-          <div className="mt-6 border-t border-slate-800 pt-5">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-2 text-center">
-              Quick Demo Accounts
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() =>
-                  handleQuickLogin("alice@example.com", "password123")
-                }
-                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-left text-xs transition-colors hover:border-teal-500/50 hover:bg-slate-800 cursor-pointer"
-              >
-                <div>
-                  <div className="font-semibold text-slate-200">Alice</div>
-                  <div className="text-[10px] text-slate-400">
-                    Patient / Client
-                  </div>
-                </div>
-                <ArrowRight className="h-3 w-3 text-slate-500" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() =>
-                  handleQuickLogin("carol@example.com", "password123")
-                }
-                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-left text-xs transition-colors hover:border-indigo-500/50 hover:bg-slate-800 cursor-pointer"
-              >
-                <div>
-                  <div className="font-semibold text-slate-200">Carol</div>
-                  <div className="text-[10px] text-indigo-400">
-                    Staff Doctor
-                  </div>
-                </div>
-                <ArrowRight className="h-3 w-3 text-slate-500" />
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
