@@ -241,8 +241,8 @@ export default function Login() {
               {mode === "login"
                 ? "Sign In to Portal"
                 : accountType === "specialist"
-                ? "Create Provider Account"
-                : "Create Account"}
+                  ? "Create Provider Account"
+                  : "Create Account"}
             </Button>
           </form>
         </div>
