@@ -387,7 +387,13 @@ export default function Appointments() {
                     onChange={(e) => setStartTime(e.target.value)}
                   >
                     <option value="">Choose start…</option>
-                    {TIME_OPTIONS.map((t) => (
+                    {TIME_OPTIONS.filter((t) => {
+                      const m = timeToMinutes(t);
+                      return (
+                        m >= timeToMinutes(availability.schedule.startTime) &&
+                        m < timeToMinutes(availability.schedule.endTime)
+                      );
+                    }).map((t) => (
                       <option key={t} value={t}>
                         {t}
                       </option>
