@@ -70,7 +70,7 @@ export default function Login() {
         </div>
 
         {/* Card */}
-        <div className=" border border-slate-800 bg-slate-900/90 backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
+        <div className=" bg-slate-900/90 backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
           {/* Mode Switcher Tabs */}
           <div className="mb-6 grid grid-cols-2 gap-1  bg-slate-950/80 p-1.5 border border-slate-800">
             <button
