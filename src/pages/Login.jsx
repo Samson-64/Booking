@@ -46,13 +46,6 @@ export default function Login() {
     }
   }
 
-  function handleQuickLogin(quickEmail, quickPassword) {
-    setEmail(quickEmail);
-    setPassword(quickPassword);
-    setMode("login");
-    setError("");
-  }
-
   return (
     <div className="flex min-h-screen items-center justify-center  px-4 py-12 selection:bg-teal-500 selection:text-white relative overflow-hidden">
       {/* Background ambient lighting */}
