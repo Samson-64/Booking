@@ -18,6 +18,7 @@ export default function Login() {
   const location = useLocation();
 
   const [mode, setMode] = useState("login");
+  const [accountType, setAccountType] = useState("client");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
