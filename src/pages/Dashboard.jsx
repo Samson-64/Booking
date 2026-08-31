@@ -122,13 +122,13 @@ export default function Dashboard() {
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
               {greeting}, <span className="text-teal-700">{user?.name}</span>
             </h1>
-            <span className="hidden sm:inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200/60">
+            {/* <span className="hidden sm:inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200/60">
               {user?.role === "STAFF" ? "Staff Manager" : "Verified Client"}
-            </span>
+            </span> */}
           </div>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500">
+          {/* <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Here is your live overview of active appointments and reserved parking slots.
-          </p>
+          </p> */}
         </div>
 
         <div className="flex items-center gap-2.5">
@@ -153,7 +153,7 @@ export default function Dashboard() {
 
       {/* ================= METRIC STAT CARDS ROW ================= */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Card 1: Dark hero card (like inspiration 1) */}
+        {/* Card 1: Dark hero card */}
         <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-5 text-white shadow-md">
           <div className="flex items-start justify-between">
             <span className="text-xs font-medium uppercase tracking-wider text-slate-300">

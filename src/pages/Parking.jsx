@@ -47,9 +47,6 @@ export default function Parking() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
               Parking Facilities
             </h1>
-            <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200">
-              Multi-Floor
-            </span>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Select a designated floor to inspect real-time slot occupancy and reserve a space.

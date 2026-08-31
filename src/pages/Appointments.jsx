@@ -17,12 +17,7 @@ import {
   formatLongDate,
   todayLocalStr,
 } from "../utils/format";
-import {
-  Clock,
-  AlertCircle,
-  ShieldCheck,
-  Check,
-} from "lucide-react";
+import { Clock, AlertCircle, ShieldCheck, Check } from "lucide-react";
 
 const DAYS_AHEAD = 14;
 
@@ -146,7 +141,12 @@ export default function Appointments() {
       return `Time must be within working hours (${schedule.startTime}–${schedule.endTime}).`;
     }
     const conflict = (availability.existing || []).some((b) =>
-      overlaps(start, end, timeToMinutes(b.startTime), timeToMinutes(b.endTime)),
+      overlaps(
+        start,
+        end,
+        timeToMinutes(b.startTime),
+        timeToMinutes(b.endTime),
+      ),
     );
     if (conflict) return "That time window overlaps an existing booking.";
     return "";
@@ -206,13 +206,7 @@ export default function Appointments() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
               Book an Appointment
             </h1>
-            <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200">
-              Step-by-step
-            </span>
           </div>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Select a specialist, choose your preferred date, and pick an open time window.
-          </p>
         </div>
       </div>
 
@@ -221,7 +215,7 @@ export default function Appointments() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Main Selection Area (2 Columns) */}
         <div className="space-y-6 lg:col-span-2">
-          {/* Step 1: Select person / specialist */}
+          {/* Step 1: Select person / provider */}
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
@@ -229,22 +223,17 @@ export default function Appointments() {
                   1
                 </span>
                 <h2 className="text-sm font-bold text-slate-900">
-                  Select Specialist / Doctor
+                  Select Provider
                 </h2>
               </div>
-              {selectedPerson && (
-                <span className="text-xs font-semibold text-teal-600">
-                  Selected: {selectedPerson.name}
-                </span>
-              )}
             </div>
 
             {peopleError ? (
               <ErrorState message={peopleError} />
             ) : people === null ? (
-              <Spinner label="Loading specialists…" />
+              <Spinner label="Loading providers…" />
             ) : people.length === 0 ? (
-              <EmptyState title="No specialists available" />
+              <EmptyState title="No providers available" />
             ) : (
               <div className="grid gap-3 sm:grid-cols-2">
                 {people.map((person) => {
@@ -256,16 +245,14 @@ export default function Appointments() {
                       onClick={() => selectPerson(person)}
                       className={`group relative flex items-center justify-between rounded-2xl border p-4 text-left transition-all cursor-pointer ${
                         isSelected
-                          ? "border-teal-500 bg-teal-50/50 shadow-sm ring-2 ring-teal-500/20"
+                          ? "border-teal-500 bg-teal-50/50 shadow-sm "
                           : "border-slate-200 bg-white hover:border-teal-300 hover:bg-slate-50/50"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
                           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white transition-transform group-hover:scale-105 ${
-                            isSelected
-                              ? "bg-teal-600"
-                              : "bg-slate-700"
+                            isSelected ? "bg-teal-600" : "bg-slate-700"
                           }`}
                         >
                           {person.name.charAt(0)}
@@ -311,7 +298,7 @@ export default function Appointments() {
 
             {!selectedPerson ? (
               <p className="text-xs text-slate-400 py-4 text-center">
-                Please select a specialist first to view their calendar.
+                Please select a provider first to view their calendar.
               </p>
             ) : (
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
@@ -331,8 +318,8 @@ export default function Appointments() {
                         isSelected
                           ? "bg-slate-900 text-white shadow-md ring-2 ring-teal-500/40"
                           : isPast
-                          ? "cursor-not-allowed bg-slate-50 text-slate-300 border border-slate-100"
-                          : "border border-slate-200 bg-white text-slate-700 hover:border-teal-400 hover:bg-teal-50/30"
+                            ? "cursor-not-allowed bg-slate-50 text-slate-300 border border-slate-100"
+                            : "border border-slate-200 bg-white text-slate-700 hover:border-teal-400 hover:bg-teal-50/30"
                       }`}
                     >
                       <span className="text-[11px] font-medium uppercase tracking-wider opacity-80">
@@ -361,12 +348,12 @@ export default function Appointments() {
 
             {!selectedDate ? (
               <p className="text-xs text-slate-400 py-4 text-center">
-                Select a date above to check specialist schedule.
+                Select a date above to check provider schedule.
               </p>
             ) : availabilityError && !availability ? (
               <ErrorState message={availabilityError} />
             ) : !availability ? (
-              <Spinner label="Checking specialist availability…" />
+              <Spinner label="Checking provider availability…" />
             ) : !availability.working ? (
               <EmptyState
                 title={`${selectedPerson.name} is not available on this date`}
@@ -375,7 +362,7 @@ export default function Appointments() {
             ) : (
               <div className="space-y-4">
                 {/* Working hours banner */}
-                <div className="flex items-center justify-between rounded-xl bg-teal-50/70 p-3 text-xs text-teal-900 border border-teal-200/60">
+                <div className="flex items-center justify-between rounded-xl bg-teal-50/70 p-3 text-xs text-teal-900 border border-none">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-teal-600" />
                     <span>
@@ -423,7 +410,7 @@ export default function Appointments() {
                 </div>
 
                 {timeError && (
-                  <div className="flex items-center gap-2 rounded-xl bg-rose-50 p-3 text-xs font-semibold text-rose-700 border border-rose-200">
+                  <div className="flex items-center gap-2 rounded-xl bg-rose-50 p-3 text-xs font-semibold text-rose-700 border border-none">
                     <AlertCircle className="h-4 w-4 shrink-0 text-rose-600" />
                     <span>{timeError}</span>
                   </div>
@@ -443,7 +430,7 @@ export default function Appointments() {
             <div className="space-y-3.5 text-xs">
               <div>
                 <span className="text-slate-400 block text-[10px] uppercase font-semibold">
-                  Specialist
+                  Provider
                 </span>
                 <span className="font-bold text-slate-800 text-sm">
                   {selectedPerson ? selectedPerson.name : "—"}
@@ -512,14 +499,17 @@ function Confirmation({ success, onReset }) {
             Appointment Booked Successfully!
           </h2>
           <p className="mt-1 text-xs text-teal-100">
-            Reference token: <span className="font-mono font-bold text-white">{appointment.reference}</span>
+            Reference token:{" "}
+            <span className="font-mono font-bold text-white">
+              {appointment.reference}
+            </span>
           </p>
         </div>
 
         {/* Ticket Details */}
         <div className="p-6 space-y-4 text-xs">
           <div className="flex justify-between border-b border-slate-100 py-2.5">
-            <span className="text-slate-500 font-medium">Specialist</span>
+            <span className="text-slate-500 font-medium">Provider</span>
             <span className="font-bold text-slate-900">{person.name}</span>
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
@@ -528,7 +518,9 @@ function Confirmation({ success, onReset }) {
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Date</span>
-            <span className="font-bold text-slate-900">{formatLongDate(date)}</span>
+            <span className="font-bold text-slate-900">
+              {formatLongDate(date)}
+            </span>
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Time Window</span>
@@ -567,4 +559,3 @@ function Confirmation({ success, onReset }) {
     </div>
   );
 }
-

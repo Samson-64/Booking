@@ -7,6 +7,7 @@ import {
   Car,
   BookmarkCheck,
   CalendarCheck,
+  Users,
   Settings,
   LogOut,
   Bell,
@@ -27,8 +28,20 @@ function MainLayout() {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const isStaff = user?.role === "STAFF";
+  const isSpecialist = user?.role === "SPECIALIST";
 
   const navItems = [
+    ...(isSpecialist
+      ? [
+        {
+          to: "/specialist",
+          label: "My Appointments",
+          icon: Users,
+          end: false,
+          badge: "Provider",
+        },
+        ]
+      : []),
     { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
     { to: "/appointments", label: "Appointments", icon: CalendarDays },
     { to: "/parking", label: "Parking", icon: Car },
@@ -136,11 +149,15 @@ function MainLayout() {
           <div className="mb-3 rounded-xl bg-slate-800/60 p-3 border border-slate-700/50">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-slate-300">
-                {isStaff ? "Staff Portal Active" : "Client Portal"}
+                {isStaff
+                  ? "Staff Portal Active"
+                  : isSpecialist
+                  ? "Provider Portal"
+                  : "Client Portal"}
               </span>
               <span
                 className={`h-2 w-2 rounded-full ${
-                  isStaff ? "bg-amber-400 animate-pulse" : "bg-teal-400"
+                  isStaff ? "bg-amber-400 animate-pulse" : isSpecialist ? "bg-indigo-400" : "bg-teal-400"
                 }`}
               />
             </div>
@@ -148,6 +165,16 @@ function MainLayout() {
               {user?.email}
             </p>
           </div>
+
+          {isSpecialist && (
+            <button
+              onClick={() => navigate("/specialist")}
+              className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors"
+            >
+              <Users className="h-4 w-4" />
+              <span>My Appointments</span>
+            </button>
+          )}
 
           <button
             onClick={() => navigate("/my-bookings")}
@@ -184,7 +211,7 @@ function MainLayout() {
               {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white">
                 <Sparkles className="h-4 w-4" />
               </div> */}
-              <span className="text-sm font-bold text-slate-900">PulseBook</span>
+              <span className="text-sm font-bold text-slate-900">Booking Portal</span>
             </div>
           </div>
 
@@ -194,26 +221,23 @@ function MainLayout() {
               <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search appointments, slots, doctors..."
+                placeholder="Search appointments, slots, providers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full rounded-full border border-slate-200 bg-slate-50/70 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/15"
               />
-              <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-semibold text-slate-400 shadow-2xs">
-                ⌘K
-              </kbd>
             </div>
           </div>
 
           {/* Right Header Controls */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Quick date display */}
+            {/* date display */}
             <div className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-3.5 py-1.5 text-xs font-medium text-slate-600">
               <CalendarDays className="h-3.5 w-3.5 text-teal-600" />
               <span>{todayFormatted}</span>
             </div>
 
-            {/* Quick Action Button */}
+            {/* Action Button */}
             <button
               onClick={() => navigate("/appointments")}
               className="flex items-center gap-1.5 rounded-full bg-teal-600 px-3.5 py-2 text-xs font-semibold text-white shadow-sm shadow-teal-700/20 hover:bg-teal-500 transition-all cursor-pointer"
@@ -309,6 +333,18 @@ function MainLayout() {
                       >
                         <CalendarCheck className="h-3.5 w-3.5 text-teal-600" />
                         Staff Management
+                      </button>
+                    )}
+                    {isSpecialist && (
+                      <button
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          navigate("/specialist");
+                        }}
+                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"
+                      >
+                        <Users className="h-3.5 w-3.5 text-indigo-600" />
+                        My Appointments
                       </button>
                     )}
                   </div>

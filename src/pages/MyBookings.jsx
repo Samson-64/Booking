@@ -76,9 +76,6 @@ export default function MyBookings() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
               My Bookings & Reservations
             </h1>
-            <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200">
-              {bookings?.length || 0} Total
-            </span>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Track and manage your upcoming consultations and reserved parking spots.
@@ -192,11 +189,11 @@ export default function MyBookings() {
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-base font-bold text-slate-900">
                         {isAppt
-                          ? `Consultation with ${b.person?.name}`
+                          ? `Appointment with ${b.person?.name}`
                           : `Space ${b.space?.name}`}
                       </h3>
                       <Badge color={isAppt ? "blue" : "teal"} size="xs">
-                        {isAppt ? "Medical Staff" : "Parking Bay"}
+                        {isAppt ? "Provider" : "Parking Bay"}
                       </Badge>
                     </div>
 
