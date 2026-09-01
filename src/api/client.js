@@ -8,7 +8,7 @@ const AUTH_KEY = "pulsebook.auth";
 // Shared axios instance. Requests to protected endpoints pick up the stored
 // JWT automatically via the request interceptor below.
 export const api = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL + "/api",
 });
 
 // Attach the stored JWT to every outgoing request, when present.
