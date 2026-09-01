@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3000,
     proxy: {
-      '/api': { target: 'https://backend-fnks.onrender.com', changeOrigin: true },
+      '/api': { target: process.env.VITE_API_BASE_URL || 'https://backend-fnks.onrender.com', changeOrigin: true },
     },
   },
 })
