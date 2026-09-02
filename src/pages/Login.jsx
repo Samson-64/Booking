@@ -39,9 +39,7 @@ export default function Login() {
       if (mode === "login") await login(email, password);
       else if (accountType === "specialist")
         await registerSpecialist(name, email, password, position);
-      } else {
-        await register(name, email, password);
-      }
+      else await register(name, email, password);
       navigate(from, { replace: true });
     } catch (err) {
       setError(apiErrorMessage(err));
