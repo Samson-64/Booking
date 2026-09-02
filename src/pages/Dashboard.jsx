@@ -439,7 +439,6 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Dual Action Buttons (like Inspiration 1: Session / History) */}
                   <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-3">
                     <button
                       onClick={() => setSelectedBooking(b)}
