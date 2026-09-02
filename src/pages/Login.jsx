@@ -19,7 +19,6 @@ export default function Login() {
   const { login, register, registerSpecialist } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
   const [mode, setMode] = useState("login");
   const [accountType, setAccountType] = useState("client");
   const [name, setName] = useState("");
