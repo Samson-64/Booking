@@ -50,6 +50,13 @@ export default function Login() {
     }
   }
 
+  const inputClass =
+    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10";
+  const switchMode = (nextMode) => {
+    setMode(nextMode);
+    setError("");
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center  px-4 py-12 selection:bg-teal-500 selection:text-white relative overflow-hidden">
       {/* Background ambient lighting */}
