@@ -32,7 +32,7 @@ export default function Login() {
   const from = location.state?.from?.pathname || "/";
 
   async function handleSubmit(e) {
-    e?.preventDefault();
+    e.preventDefault();
     setError("");
     setLoading(true);
     try {
