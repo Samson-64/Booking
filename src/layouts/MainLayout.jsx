@@ -85,18 +85,18 @@ function MainLayout() {
             </div>
           </div>
 
-          {/* <div className="hidden md:flex items-center">
-            <div className="relative w-72 lg:w-96">
+          <div className="hidden md:flex items-center ml-7">
+            <div className="relative w-72 lg:w-40 ">
               <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search appointments, slots, providers..."
+                placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
+                className="w-full rounded-full border border-white py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
               />
             </div>
-          </div> */}
+          </div>
 
           {/* Navigation Links */}
           <div className="px-3 py-6">
@@ -254,7 +254,7 @@ function MainLayout() {
           </div>
 
           {/* Search bar with shortcut tag */}
-          <div className="hidden md:flex items-center">
+          {/* <div className="hidden md:flex items-center">
             <div className="relative w-72 lg:w-96">
               <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
@@ -265,10 +265,10 @@ function MainLayout() {
                 className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Right Header Controls */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 ml-[80.5%]">
             {/* date display */}
             <div className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-3.5 py-1.5 text-xs font-medium text-slate-600">
               <CalendarDays className="h-3.5 w-3.5 text-sleat-900" />
@@ -316,9 +316,6 @@ function MainLayout() {
           <div>
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <div className="flex items-center gap-3">
-                {/* <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500 text-white">
-                  <Sparkles className="h-5 w-5" />
-                </div> */}
                 <span className="text-base font-bold text-white">
                   Booking Portal
                 </span>
