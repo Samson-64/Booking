@@ -49,7 +49,8 @@ export default function Parking() {
             </h1>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Select a designated floor to inspect real-time slot occupancy and reserve a space.
+            Select a designated floor to inspect real-time slot occupancy and
+            reserve a space.
           </p>
         </div>
       </div>
@@ -109,4 +110,3 @@ export default function Parking() {
     </div>
   );
 }
-
