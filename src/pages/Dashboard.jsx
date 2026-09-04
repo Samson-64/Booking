@@ -8,7 +8,11 @@ import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { StatusBadge } from "../components/StatusBadge";
 import Badge from "../components/Badge";
-import { formatLongDate, formatShortDate, todayLocalStr } from "../utils/format";
+import {
+  formatLongDate,
+  formatShortDate,
+  todayLocalStr,
+} from "../utils/format";
 import {
   CarFront,
   Clock,
@@ -51,7 +55,8 @@ export default function Dashboard() {
     fetchMyBookings()
       .then((b) => active && setBookings(b))
       .catch((e) => {
-        if (active) setError(e?.response?.data?.error || "Failed to load bookings");
+        if (active)
+          setError(e?.response?.data?.error || "Failed to load bookings");
       });
     return () => {
       active = false;
@@ -74,9 +79,13 @@ export default function Dashboard() {
     return (bookings || []).filter((b) => b.date === todayStr);
   }, [bookings, todayStr]);
 
-  const upcomingAppointments = upcoming.filter((b) => b.type === "APPOINTMENT").length;
+  const upcomingAppointments = upcoming.filter(
+    (b) => b.type === "APPOINTMENT",
+  ).length;
   const upcomingParking = upcoming.filter((b) => b.type === "PARKING").length;
-  const confirmedCount = (bookings || []).filter((b) => b.status === "CONFIRMED").length;
+  const confirmedCount = (bookings || []).filter(
+    (b) => b.status === "CONFIRMED",
+  ).length;
 
   // Filtered list based on active tab, status filter, date, and search
   const filteredBookings = useMemo(() => {
@@ -97,7 +106,11 @@ export default function Dashboard() {
         const q = searchFilter.toLowerCase();
         const name = (b.person?.name || b.space?.name || "").toLowerCase();
         const ref = (b.reference || "").toLowerCase();
-        const pos = (b.person?.position || b.space?.location || "").toLowerCase();
+        const pos = (
+          b.person?.position ||
+          b.space?.location ||
+          ""
+        ).toLowerCase();
         if (!name.includes(q) && !ref.includes(q) && !pos.includes(q)) {
           return false;
         }
@@ -254,9 +267,7 @@ export default function Dashboard() {
             <span className="text-3xl font-bold tracking-tight text-slate-900">
               {confirmedCount}
             </span>
-            <span className="text-xs font-medium text-slate-500">
-              verified
-            </span>
+            <span className="text-xs font-medium text-slate-500">verified</span>
           </div>
           <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
             <span className="text-slate-400">All-time record</span>
@@ -337,7 +348,9 @@ export default function Dashboard() {
             </div>
 
             {/* Reset Button */}
-            {(activeTab !== "ALL" || statusFilter !== "ALL" || selectedDateFilter) && (
+            {(activeTab !== "ALL" ||
+              statusFilter !== "ALL" ||
+              selectedDateFilter) && (
               <button
                 onClick={handleResetFilters}
                 className="flex items-center gap-1 rounded-xl border border-slate-200 px-2.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 cursor-pointer"
@@ -430,10 +443,7 @@ export default function Dashboard() {
                           {b.startTime} – {b.endTime}
                         </span>
                       </div>
-                      <Badge
-                        color={isAppt ? "indigo" : "teal"}
-                        size="sm"
-                      >
+                      <Badge color={isAppt ? "indigo" : "teal"} size="sm">
                         {formatShortDate(b.date)}
                       </Badge>
                     </div>
@@ -489,10 +499,7 @@ export default function Dashboard() {
                           <span className="text-sm font-semibold text-slate-900">
                             {titleName}
                           </span>
-                          <Badge
-                            color={isAppt ? "indigo" : "teal"}
-                            size="sm"
-                          >
+                          <Badge color={isAppt ? "indigo" : "teal"} size="sm">
                             {isAppt ? "Appointment" : "Parking"}
                           </Badge>
                         </div>
@@ -607,4 +614,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
