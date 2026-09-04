@@ -158,6 +158,7 @@ export default function Dashboard() {
             size="sm"
             onClick={() => navigate("/appointments")}
             icon={<Plus className="h-4 w-4" />}
+            className="bg-slate-900"
           >
             Book Appointment
           </Button>
