@@ -11,7 +11,7 @@ function Card({
   return (
     <div
       onClick={onClick}
-      className={`rounded-2xl border border-slate-200/80 bg-white shadow-2xs transition-all ${
+      className={`rounded-2xl border-none bg-white shadow-2xs transition-all ${
         onClick ? "cursor-pointer hover:border-teal-300 hover:shadow-md" : ""
       } ${className}`}
     >
@@ -20,7 +20,9 @@ function Card({
           <div className="flex items-center gap-2.5">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+                <h3 className="text-base font-semibold text-slate-900">
+                  {title}
+                </h3>
                 {badge}
               </div>
               {subtitle && (
