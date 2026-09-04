@@ -52,11 +52,11 @@ export default function Login() {
 
   return (
     <main className="min-h-screen bg-[#dce9f5] p-3 selection:bg-blue-200 selection:text-blue-950 sm:p-6 lg:p-8">
-      <div className="mx-auto grid min-h-[calc(100vh-1.5rem)] max-w-6xl overflow-hidden rounded-[1.8rem] border-[14px] border-[#071827] bg-[#eef5fc] shadow-2xl shadow-slate-950/30 sm:min-h-[calc(100vh-3rem)] lg:grid-cols-[1fr_1.18fr] lg:rounded-[2rem]">
+      <div className="mx-auto grid min-h-[calc(100vh-1.5rem)] max-w-6xl overflow-hidden rounded-[1.8rem] border-14 border-[#071827] bg-[#eef5fc] shadow-2xl shadow-slate-950/30 sm:min-h-[calc(100vh-3rem)] lg:grid-cols-[1fr_1.18fr] lg:rounded-4xl">
         <section className="relative z-10 flex items-center justify-center bg-[#eef5fc] px-6 py-12 sm:px-12 lg:px-14 lg:py-16">
           <div className="w-full max-w-md">
             <div className="mb-10 flex items-center gap-2.5 text-2xl font-bold tracking-tight text-[#102c67]">
-              <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#2dd4bf] text-[#102c67] shadow-sm">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-400 text-[#102c67] shadow-sm">
                 <PackageCheck className="h-5 w-5" />
               </div>
               Booking Portal
@@ -213,7 +213,7 @@ export default function Login() {
         </section>
         <section
           aria-label="Espacio de trabajo"
-          className="relative hidden min-h-[520px] overflow-hidden bg-[#062b5e] lg:block"
+          className="relative hidden min-h-130 overflow-hidden bg-[#062b5e] lg:block"
         >
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#062b5e_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%),url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=85')] bg-cover bg-center" />
           <div className="absolute inset-y-0 -left-20 w-44 -skew-x-8 bg-[#eef5fc]" />
