@@ -1,10 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import {
-  fetchAllAppointments,
-  updateAppointmentStatus,
-} from "../api/booking";
+import { fetchAllAppointments, updateAppointmentStatus } from "../api/booking";
 import { apiErrorMessage } from "../api/client";
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
@@ -13,14 +10,7 @@ import EmptyState from "../components/EmptyState";
 import { StatusBadge } from "../components/StatusBadge";
 import Badge from "../components/Badge";
 import { formatLongDate } from "../utils/format";
-import {
-  CheckCircle2,
-  XCircle,
-  Clock,
-  User,
-  Mail,
-  Users,
-} from "lucide-react";
+import { CheckCircle2, XCircle, Clock, User, Mail, Users } from "lucide-react";
 
 const TABS = [
   { key: "PENDING", label: "Pending Review" },
@@ -90,7 +80,8 @@ export default function StaffAppointments() {
             </span>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Review incoming booking requests, approve pending bookings, or mark appointments completed.
+            Review incoming booking requests, approve pending bookings, or mark
+            appointments completed.
           </p>
         </div>
       </div>
@@ -169,7 +160,8 @@ export default function StaffAppointments() {
                       </span>
                       <span className="flex items-center gap-1 font-medium text-slate-700">
                         <Clock className="h-3.5 w-3.5 text-slate-400" />
-                        {formatLongDate(appt.date)} · {appt.startTime} – {appt.endTime}
+                        {formatLongDate(appt.date)} · {appt.startTime} –{" "}
+                        {appt.endTime}
                       </span>
                     </div>
                   </div>
@@ -199,7 +191,8 @@ export default function StaffAppointments() {
                       <CheckCircle2 className="h-3.5 w-3.5" /> Mark Completed
                     </Button>
                   )}
-                  {(appt.status === "PENDING" || appt.status === "CONFIRMED") && (
+                  {(appt.status === "PENDING" ||
+                    appt.status === "CONFIRMED") && (
                     <Button
                       variant="danger"
                       size="sm"
@@ -219,4 +212,3 @@ export default function StaffAppointments() {
     </div>
   );
 }
-
