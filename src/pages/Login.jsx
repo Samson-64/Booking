@@ -5,14 +5,10 @@ import Button from "../components/Button";
 import {
   ArrowRight,
   BriefcaseBusiness,
-  Check,
   Eye,
   EyeOff,
-  KeyRound,
-  Mail,
   PackageCheck,
   User,
-  Users,
 } from "lucide-react";
 
 export default function Login() {
@@ -48,77 +44,40 @@ export default function Login() {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10";
+    "w-full border-0 border-b border-slate-300 bg-transparent px-0 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-800 focus:ring-0";
   const switchMode = (nextMode) => {
     setMode(nextMode);
     setError("");
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 p-4 selection:bg-teal-100 selection:text-teal-950 sm:p-6 lg:p-8">
-      <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-slate-900/10 lg:grid-cols-[1.04fr_.96fr]">
-        <section className="relative hidden overflow-hidden bg-slate-950 p-10 text-white lg:flex lg:flex-col">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(45,212,191,.26),transparent_30%),radial-gradient(circle_at_84%_82%,rgba(99,102,241,.28),transparent_34%)]" />
-          <div className="relative flex items-center mt-25 ml-[15%] gap-3 text-[50px] font-bold tracking-tight">
-            Booking Portal
-          </div>
-          <div className="relative  max-w-md py-16">
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[.2em] text-teal-300">
-              Work, organized
-            </p>
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight">
-              Everything your team needs, all in one place.
-            </h1>
-            <p className="mt-5 text-base leading-7 text-slate-300">
-              Coordinate requests, appointments, and spaces without the
-              back-and-forth.
-            </p>
-            <ul className="mt-10 space-y-4 text-sm text-slate-200">
-              {[
-                "Simple booking management",
-                "Real-time appointment updates",
-                "Built for teams and providers",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-teal-400/15 text-teal-300">
-                    <Check className="h-3.5 w-3.5" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="relative text-xs text-slate-500">
-            © {new Date().getFullYear()} Booking Portal
-          </p>
-        </section>
-        <section className="flex items-center justify-center px-5 py-10 sm:px-10 lg:px-14">
+    <main className="min-h-screen bg-[#dce9f5] p-3 selection:bg-blue-200 selection:text-blue-950 sm:p-6 lg:p-8">
+      <div className="mx-auto grid min-h-[calc(100vh-1.5rem)] max-w-6xl overflow-hidden rounded-[1.8rem] border-[14px] border-[#071827] bg-[#eef5fc] shadow-2xl shadow-slate-950/30 sm:min-h-[calc(100vh-3rem)] lg:grid-cols-[1fr_1.18fr] lg:rounded-[2rem]">
+        <section className="relative z-10 flex items-center justify-center bg-[#eef5fc] px-6 py-12 sm:px-12 lg:px-14 lg:py-16">
           <div className="w-full max-w-md">
-            <div className="mb-8 lg:hidden">
-              <div className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-teal-600 text-white">
+            <div className="mb-10 flex items-center gap-2.5 text-2xl font-bold tracking-tight text-[#102c67]">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#2dd4bf] text-[#102c67] shadow-sm">
                 <PackageCheck className="h-5 w-5" />
               </div>
-              <p className="text-sm font-semibold text-teal-700">
-                Booking Portal
-              </p>
+              Booking Portal
             </div>
-            <div className="mb-7">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900">
-                {mode === "login" ? "Welcome back" : "Create your account"}
-              </h2>
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold tracking-tight text-[#102c67] sm:text-[2.1rem]">
+                {mode === "login" ? "Welcome Back" : "Create your account"}
+              </h1>
               <p className="mt-2 text-sm leading-6 text-slate-500">
                 {mode === "login"
                   ? "Sign in to continue to your workspace."
-                  : "Start organizing your work in just a few moments."}
+                  : "Start organising your work in just a few moment."}
               </p>
             </div>
             <div
-              className="mb-7 grid grid-cols-2 rounded-xl bg-slate-100 p-1"
+              className="mb-8 grid grid-cols-2 border-b border-slate-200"
               role="tablist"
               aria-label="Authentication mode"
             >
               {[
-                ["login", "Sign in"],
+                ["login", "Sign In"],
                 ["register", "Create account"],
               ].map(([value, label]) => (
                 <button
@@ -127,7 +86,7 @@ export default function Login() {
                   role="tab"
                   aria-selected={mode === value}
                   onClick={() => switchMode(value)}
-                  className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition ${mode === value ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-800"}`}
+                  className={`border-b-2 px-3 py-3 text-sm font-semibold transition ${mode === value ? "border-[#173486] text-[#173486]" : "border-transparent text-slate-400 hover:text-slate-700"}`}
                 >
                   {label}
                 </button>
@@ -144,7 +103,7 @@ export default function Login() {
                   }}
                   icon={<User className="h-4 w-4" />}
                   title="Client"
-                  detail="Book services"
+                  detail="Booking Service"
                 />
                 <AccountType
                   active={accountType === "specialist"}
@@ -154,17 +113,17 @@ export default function Login() {
                   }}
                   icon={<BriefcaseBusiness className="h-4 w-4" />}
                   title="Provider"
-                  detail="Offer services"
+                  detail="Offer Service"
                 />
               </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === "register" && (
-                <Field label="Full name" icon={<User className="h-4 w-4" />}>
+                <Field label="Full Name">
                   <input
                     id="name"
                     type="text"
-                    placeholder="Jane Doe"
+                    placeholder="Full Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -174,14 +133,11 @@ export default function Login() {
                 </Field>
               )}
               {mode === "register" && accountType === "specialist" && (
-                <Field
-                  label="Position or specialty"
-                  icon={<Users className="h-4 w-4" />}
-                >
+                <Field label="Position or specification">
                   <input
                     id="position"
                     type="text"
-                    placeholder="Consultant, trainer, technician…"
+                    placeholder="Consultant, trainer, technician"
                     value={position}
                     onChange={(e) => setPosition(e.target.value)}
                     required
@@ -190,7 +146,7 @@ export default function Login() {
                   />
                 </Field>
               )}
-              <Field label="Email address" icon={<Mail className="h-4 w-4" />}>
+              <Field label="Email address">
                 <input
                   id="email"
                   type="email"
@@ -202,11 +158,11 @@ export default function Login() {
                   className={inputClass}
                 />
               </Field>
-              <Field label="Password" icon={<KeyRound className="h-4 w-4" />}>
+              <Field label="password">
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                  placeholder="Enter your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -240,18 +196,33 @@ export default function Login() {
                 type="submit"
                 loading={loading}
                 variant="primary"
-                className="mt-2 w-full justify-center py-3"
+                className="mt-4 w-full justify-center rounded-md bg-[#172f89] py-3.5 text-sm shadow-lg shadow-blue-950/15 hover:bg-[#10256e]"
               >
                 {mode === "login"
-                  ? "Sign in"
+                  ? "Sign In"
                   : accountType === "specialist"
-                    ? "Create provider account"
+                    ? "Create provider Account"
                     : "Create account"}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </form>
             <p className="mt-7 text-center text-xs leading-5 text-slate-400">
-              By continuing, you agree to use the portal responsibly.
+              By continuuing, you agree to use the portal responsibly
+            </p>
+          </div>
+        </section>
+        <section
+          aria-label="Espacio de trabajo"
+          className="relative hidden min-h-[520px] overflow-hidden bg-[#062b5e] lg:block"
+        >
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#062b5e_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%),url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=85')] bg-cover bg-center" />
+          <div className="absolute inset-y-0 -left-20 w-44 -skew-x-8 bg-[#eef5fc]" />
+          <div className="absolute bottom-12 left-16 max-w-xs text-white">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[.22em] text-cyan-200">
+              Your space, your reservations
+            </p>
+            <p className="text-2xl font-semibold leading-tight">
+              Everything you need to work better.
             </p>
           </div>
         </section>
@@ -263,7 +234,7 @@ export default function Login() {
 function Field({ label, icon, children }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-slate-700">
+      <label className="mb-1.5 block text-xs font-semibold text-slate-500">
         {label}
       </label>
       <div className="relative">
