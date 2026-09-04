@@ -7,7 +7,6 @@ import {
   BriefcaseBusiness,
   Eye,
   EyeOff,
-  PackageCheck,
   User,
 } from "lucide-react";
 
@@ -56,9 +55,6 @@ export default function Login() {
         <section className="relative z-10 flex items-center justify-center bg-[#eef5fc] px-6 py-12 sm:px-12 lg:px-14 lg:py-16">
           <div className="w-full max-w-md">
             <div className="mb-10 flex items-center gap-2.5 text-2xl font-bold tracking-tight text-[#102c67]">
-              <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-400 text-[#102c67] shadow-sm">
-                <PackageCheck className="h-5 w-5" />
-              </div>
               Booking Portal
             </div>
             <div className="mb-8">
@@ -86,7 +82,7 @@ export default function Login() {
                   role="tab"
                   aria-selected={mode === value}
                   onClick={() => switchMode(value)}
-                  className={`border-b-2 px-3 py-3 text-sm font-semibold transition ${mode === value ? "border-[#173486] text-[#173486]" : "border-transparent text-slate-400 hover:text-slate-700"}`}
+                  className={`border-b-2 px-3 py-3 text-sm font-semibold transition ${mode === value ? "border-slate-900 text-slate-900" : "border-transparent text-slate-400 hover:text-slate-700"}`}
                 >
                   {label}
                 </button>
@@ -196,7 +192,7 @@ export default function Login() {
                 type="submit"
                 loading={loading}
                 variant="primary"
-                className="mt-4 w-full justify-center rounded-md bg-[#172f89] py-3.5 text-sm shadow-lg shadow-blue-950/15 hover:bg-[#10256e]"
+                className="mt-4 w-full justify-center rounded-md bg-slate-900 py-3.5 text-sm shadow-lg shadow-slate-950/15 hover:bg-slate-800"
               >
                 {mode === "login"
                   ? "Sign In"
