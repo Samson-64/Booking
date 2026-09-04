@@ -294,94 +294,102 @@ function MainLayout() {
       </div>
 
       {/* ================= MOBILE DRAWER ================= */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs"
-            onClick={() => setMobileOpen(false)}
-          />
+      <div
+        className={`fixed inset-0 z-50 flex transition-none lg:hidden ${
+          mobileOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className={`fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-500 ${
+            mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setMobileOpen(false)}
+        />
 
-          {/* Drawer content */}
-          <div className="relative flex w-72 flex-col justify-between bg-navy-900 p-6 text-slate-300 shadow-2xl z-10">
-            <div>
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div className="flex items-center gap-3">
-                  {/* <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500 text-white">
-                    <Sparkles className="h-5 w-5" />
-                  </div> */}
-                  <span className="text-base font-bold text-white">
-                    Booking Portal
-                  </span>
-                </div>
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+        {/* Drawer content */}
+        <div
+          className={`relative flex w-72 flex-col justify-between bg-navy-900 p-6 text-slate-300 shadow-2xl z-10 transition-transform duration-500 ${
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                {/* <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500 text-white">
+                  <Sparkles className="h-5 w-5" />
+                </div> */}
+                <span className="text-base font-bold text-white">
+                  Booking Portal
+                </span>
               </div>
-
-              <nav className="mt-6 space-y-1.5">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <NavLink
-                      key={item.to}
-                      to={item.to}
-                      end={item.end}
-                      onClick={() => setMobileOpen(false)}
-                      className={({ isActive }) =>
-                        `flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-medium transition-colors ${
-                          isActive
-                            ? "bg-white text-slate-900 shadow-md font-semibold"
-                            : "text-slate-400 hover:bg-slate-800 hover:text-slate-100"
-                        }`
-                      }
-                    >
-                      {({ isActive }) => (
-                        <>
-                          <div className="flex items-center gap-3">
-                            <Icon
-                              className={`h-5 w-5 ${
-                                isActive ? "text-teal-600" : "text-slate-400"
-                              }`}
-                            />
-                            <span>{item.label}</span>
-                          </div>
-                          {item.badge && (
-                            <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-bold text-teal-800">
-                              {item.badge}
-                            </span>
-                          )}
-                        </>
-                      )}
-                    </NavLink>
-                  );
-                })}
-              </nav>
-            </div>
-
-            <div className="border-t border-slate-800 pt-4 space-y-1">
               <button
-                onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-100 transition-colors"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
               >
-                <Bell className="h-4 w-4" />
-                <span>Notifications</span>
-                <span className="ml-auto h-2 w-2 rounded-full bg-teal-400" />
-              </button>
-              <button
-                onClick={handleLogout}
-                className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-400 hover:bg-rose-950/40"
-              >
-                <LogOut className="h-4 w-4" />
-                <span>Sign Out</span>
+                <X className="h-5 w-5" />
               </button>
             </div>
+
+            <nav className="mt-6 space-y-1.5">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.end}
+                    onClick={() => setMobileOpen(false)}
+                    className={({ isActive }) =>
+                      `flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "bg-white text-slate-900 shadow-md font-semibold"
+                          : "text-slate-400 hover:bg-slate-800 hover:text-slate-100"
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className="flex items-center gap-3">
+                          <Icon
+                            className={`h-5 w-5 ${
+                              isActive ? "text-teal-600" : "text-slate-400"
+                            }`}
+                          />
+                          <span>{item.label}</span>
+                        </div>
+                        {item.badge && (
+                          <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-bold text-teal-800">
+                            {item.badge}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </NavLink>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="border-t border-slate-800 pt-4 space-y-1">
+            <button
+              onClick={() => setNotificationsOpen(!notificationsOpen)}
+              className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-100 transition-colors"
+            >
+              <Bell className="h-4 w-4" />
+              <span>Notifications</span>
+              <span className="ml-auto h-2 w-2 rounded-full bg-teal-400" />
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-400 hover:bg-rose-950/40"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Sign Out</span>
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
