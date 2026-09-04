@@ -196,7 +196,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 2: Appointments */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all hover:border-teal-300 hover:shadow-sm">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Appointments
@@ -225,7 +225,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 3: Parking Spaces */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all hover:border-teal-300 hover:shadow-sm">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all ">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Parking Reserved
@@ -254,7 +254,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 4: Confirmed Rate */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all hover:border-teal-300 hover:shadow-sm">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Confirmed Total
