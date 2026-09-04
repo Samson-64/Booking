@@ -7,13 +7,7 @@ import EmptyState from "../components/EmptyState";
 import { StatusBadge } from "../components/StatusBadge";
 import Badge from "../components/Badge";
 import { formatLongDate } from "../utils/format";
-import {
-  CalendarDays,
-  CarFront,
-  Clock,
-  MapPin,
-  User,
-} from "lucide-react";
+import { CalendarDays, CarFront, Clock, MapPin, User } from "lucide-react";
 
 const TABS = [
   { key: "UPCOMING", label: "Upcoming" },
@@ -78,7 +72,8 @@ export default function MyBookings() {
             </h1>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Track and manage your upcoming consultations and reserved parking spots.
+            Track and manage your upcoming consultations and reserved parking
+            spots.
           </p>
         </div>
       </div>
@@ -233,4 +228,3 @@ export default function MyBookings() {
     </div>
   );
 }
-
