@@ -132,16 +132,10 @@ export default function Dashboard() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className=" sm:text-2xl font-bold tracking-tight text-slate-900">
-              {greeting}, <span className="text-teal-700">{user?.name}</span>
+            <h1 className=" sm:text-2xl font-bold tracking-tight text-gray-900">
+              {greeting}, <span className="text-gray-500">{user?.name}</span>
             </h1>
-            {/* <span className="hidden sm:inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200/60">
-              {user?.role === "STAFF" ? "Staff Manager" : "Verified Client"}
-            </span> */}
           </div>
-          {/* <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Here is your live overview of active appointments and reserved parking slots.
-          </p> */}
         </div>
 
         <div className="flex items-center gap-2.5">
@@ -149,7 +143,8 @@ export default function Dashboard() {
             variant="secondary"
             size="sm"
             onClick={() => navigate("/parking")}
-            icon={<CarFront className="h-4 w-4 text-teal-600" />}
+            icon={<CarFront className="h-4 w-4 text-slate-900" />}
+            className="border-none"
           >
             Find Parking
           </Button>
@@ -158,7 +153,7 @@ export default function Dashboard() {
             size="sm"
             onClick={() => navigate("/appointments")}
             icon={<Plus className="h-4 w-4" />}
-            className="bg-slate-900"
+            className="bg-slate-900 border-none"
           >
             Book Appointment
           </Button>
@@ -168,7 +163,7 @@ export default function Dashboard() {
       {/* ================= METRIC STAT CARDS ROW ================= */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Dark hero card */}
-        <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-5 text-white shadow-md">
+        <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-5 text-white shadow-md border-none">
           <div className="flex items-start justify-between">
             <span className="text-xs font-medium uppercase tracking-wider text-slate-300">
               Today's Schedule
@@ -197,7 +192,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 2: Appointments */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all">
+        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Appointments
@@ -226,7 +221,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 3: Parking Spaces */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all ">
+        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all ">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Parking Reserved
@@ -255,7 +250,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 4: Confirmed Rate */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all">
+        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all">
           <div className="flex items-start justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Confirmed Total
@@ -285,7 +280,7 @@ export default function Dashboard() {
       {/* ================= MAIN CONTENT SECTION ================= */}
       <div className="space-y-4">
         {/* Navigation Tabs & Toolbar */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-2xl border border-slate-200/80 bg-white p-3 shadow-2xs">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-2xl  bg-white p-3 shadow-2xs">
           {/* Category Tabs */}
           <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
             {[
@@ -313,7 +308,7 @@ export default function Dashboard() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 focus:border-teal-500 focus:outline-none"
+              className="rounded-xl bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 focus:outline-none"
             >
               <option value="ALL">All Statuses</option>
               <option value="CONFIRMED">Confirmed</option>
@@ -323,7 +318,7 @@ export default function Dashboard() {
             </select>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center rounded-xl border border-slate-200 bg-slate-50 p-0.5">
+            <div className="flex items-center rounded-xl border-none bg-slate-50 p-0.5">
               <button
                 onClick={() => setViewMode("grid")}
                 className={`rounded-lg p-1.5 transition-colors cursor-pointer ${
@@ -410,7 +405,7 @@ export default function Dashboard() {
               return (
                 <div
                   key={b.id}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
+                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <div>
                     {/* Top Header with Avatar, Name, and Status Badge */}
@@ -418,7 +413,7 @@ export default function Dashboard() {
                       <div className="flex items-center gap-3">
                         <div
                           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
-                            isAppt ? "bg-indigo-600" : "bg-teal-600"
+                            isAppt ? "bg-indigo-600" : "bg-slate-900"
                           }`}
                         >
                           {initial}
@@ -453,7 +448,7 @@ export default function Dashboard() {
                   <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-3">
                     <button
                       onClick={() => setSelectedBooking(b)}
-                      className="flex-1 rounded-xl bg-teal-600 py-2 text-xs font-semibold text-white shadow-2xs hover:bg-teal-500 transition-all cursor-pointer"
+                      className="flex-1 rounded-xl bg-slate-900 py-2 text-xs font-semibold text-white shadow-2xs hover:bg-slate-800 transition-all cursor-pointer"
                     >
                       View Details
                     </button>
@@ -542,7 +537,7 @@ export default function Dashboard() {
           <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl animate-in zoom-in-95">
             <div className="flex items-start justify-between border-b border-slate-100 pb-4">
               <div>
-                <span className="text-xs font-semibold text-teal-600 uppercase tracking-wider">
+                <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
                   Booking Summary
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mt-0.5">
@@ -599,8 +594,9 @@ export default function Dashboard() {
                 Close
               </Button>
               <Button
-                variant="primary"
+                // variant="primary"
                 size="sm"
+                className="bg-slate-900"
                 onClick={() => {
                   setSelectedBooking(null);
                   navigate("/my-bookings");
