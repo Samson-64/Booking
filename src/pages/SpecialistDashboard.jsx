@@ -57,7 +57,13 @@ export default function SpecialistDashboard() {
   }, [isSpecialist]);
 
   const counts = useMemo(() => {
-    const map = { ALL: 0, PENDING: 0, CONFIRMED: 0, COMPLETED: 0, CANCELLED: 0 };
+    const map = {
+      ALL: 0,
+      PENDING: 0,
+      CONFIRMED: 0,
+      COMPLETED: 0,
+      CANCELLED: 0,
+    };
     if (!appointments) return map;
     for (const a of appointments) {
       map[a.status] = (map[a.status] || 0) + 1;
@@ -108,7 +114,8 @@ export default function SpecialistDashboard() {
             </span>
           </div>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Welcome back, {user?.name}. Review the appointments assigned to you, verify them, and update their status.
+            Welcome back, {user?.name}. Review the appointments assigned to you,
+            verify them, and update their status.
           </p>
         </div>
         <div className="flex items-center gap-2.5">
@@ -216,7 +223,11 @@ export default function SpecialistDashboard() {
         <Spinner label="Loading your appointments…" />
       ) : filtered.length === 0 ? (
         <EmptyState
-          title={tab === "ALL" ? "No appointments assigned yet" : `No ${tab.toLowerCase()} appointments`}
+          title={
+            tab === "ALL"
+              ? "No appointments assigned yet"
+              : `No ${tab.toLowerCase()} appointments`
+          }
           message={
             tab === "ALL"
               ? "When a client books an appointment with you, it will appear here for you to review and update."
@@ -258,7 +269,8 @@ export default function SpecialistDashboard() {
                       </span>
                       <span className="flex items-center gap-1 font-medium text-slate-700">
                         <Clock className="h-3.5 w-3.5 text-slate-400" />
-                        {formatLongDate(appt.date)} · {appt.startTime} – {appt.endTime}
+                        {formatLongDate(appt.date)} · {appt.startTime} –{" "}
+                        {appt.endTime}
                       </span>
                       <span className="font-mono text-slate-400">
                         {appt.reference}
@@ -291,7 +303,8 @@ export default function SpecialistDashboard() {
                       <CheckCircle2 className="h-3.5 w-3.5" /> Mark Completed
                     </Button>
                   )}
-                  {(appt.status === "PENDING" || appt.status === "CONFIRMED") && (
+                  {(appt.status === "PENDING" ||
+                    appt.status === "CONFIRMED") && (
                     <Button
                       variant="danger"
                       size="sm"
@@ -316,7 +329,8 @@ export default function SpecialistDashboard() {
             Also book your own slots
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">
-            As a provider you can also schedule appointments and reserve parking like a client.
+            As a provider you can also schedule appointments and reserve parking
+            like a client.
           </p>
         </div>
         <div className="flex items-center gap-2">
