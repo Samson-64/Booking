@@ -255,7 +255,9 @@ export default function Dashboard() {
             <span className="text-2xl font-bold tracking-tight text-slate-900">
               {confirmedCount}
             </span>
-            <span className="text-[10px] font-medium text-slate-500">total</span>
+            <span className="text-[10px] font-medium text-slate-500">
+              total
+            </span>
           </div>
           <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2 text-[10px]">
             <span className="text-slate-400">All-time</span>
