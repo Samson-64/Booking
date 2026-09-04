@@ -11,11 +11,7 @@ import ErrorState from "../components/ErrorState";
 import { Select } from "../components/Fields";
 import Badge from "../components/Badge";
 import { formatLongDate, todayLocalStr } from "../utils/format";
-import {
-  CarFront,
-  ArrowLeft,
-  ShieldCheck,
-} from "lucide-react";
+import { CarFront, ArrowLeft, ShieldCheck } from "lucide-react";
 
 function allTimeOptions() {
   const opts = [];
@@ -46,9 +42,15 @@ export default function ParkingBooking() {
   const [spacesLoading, setSpacesLoading] = useState(true);
 
   const [date, setDate] = useState(searchParams.get("date") || todayLocalStr());
-  const initialOpts = timeOptionsForDate(searchParams.get("date") || todayLocalStr());
+  const initialOpts = timeOptionsForDate(
+    searchParams.get("date") || todayLocalStr(),
+  );
   const [startTime, setStartTime] = useState(initialOpts[0] || "09:00");
-  const [endTime, setEndTime] = useState(initialOpts[1] || allTimeOptions()[allTimeOptions().indexOf(initialOpts[0]) + 1] || "10:00");
+  const [endTime, setEndTime] = useState(
+    initialOpts[1] ||
+      allTimeOptions()[allTimeOptions().indexOf(initialOpts[0]) + 1] ||
+      "10:00",
+  );
 
   const [availability, setAvailability] = useState(null);
   const [checking, setChecking] = useState(false);
@@ -163,11 +165,12 @@ export default function ParkingBooking() {
               {spacesLoading
                 ? "Loading space…"
                 : space
-                ? `Reserve Space ${space.name}`
-                : "Parking Space"}
+                  ? `Reserve Space ${space.name}`
+                  : "Parking Space"}
             </h1>
             <p className="text-xs text-slate-500">
-              {space?.location || floor || "Facility Zone"} · Reserved client parking
+              {space?.location || floor || "Facility Zone"} · Reserved client
+              parking
             </p>
           </div>
         </div>
@@ -213,11 +216,13 @@ export default function ParkingBooking() {
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
               >
-                {allTimeOptions().filter((t) => t > startTime).map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
+                {allTimeOptions()
+                  .filter((t) => t > startTime)
+                  .map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
               </Select>
             </div>
 
@@ -322,7 +327,10 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
             Parking Space Reserved!
           </h2>
           <p className="mt-1 text-xs text-teal-100">
-            Booking Pass: <span className="font-mono font-bold text-white">{booking.reference}</span>
+            Booking Pass:{" "}
+            <span className="font-mono font-bold text-white">
+              {booking.reference}
+            </span>
           </p>
         </div>
 
@@ -330,7 +338,9 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
         <div className="p-6 space-y-4 text-xs">
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Space Name</span>
-            <span className="font-bold text-slate-900">{spaceName || "Parking Space"}</span>
+            <span className="font-bold text-slate-900">
+              {spaceName || "Parking Space"}
+            </span>
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Floor / Level</span>
@@ -338,7 +348,9 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Date</span>
-            <span className="font-bold text-slate-900">{formatLongDate(booking.date)}</span>
+            <span className="font-bold text-slate-900">
+              {formatLongDate(booking.date)}
+            </span>
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Reserved Hours</span>
@@ -376,4 +388,3 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
     </div>
   );
 }
-
