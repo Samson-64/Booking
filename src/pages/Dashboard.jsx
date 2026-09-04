@@ -16,8 +16,6 @@ import {
 import {
   CarFront,
   Clock,
-  LayoutGrid,
-  List as ListIcon,
   RotateCcw,
   Plus,
   TrendingUp,
@@ -37,8 +35,6 @@ export default function Dashboard() {
   const [bookings, setBookings] = useState(null);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("ALL"); // ALL, APPOINTMENT, PARKING, CALENDAR
-  const [statusFilter, setStatusFilter] = useState("ALL");
-  const [viewMode, setViewMode] = useState("grid"); // grid or list
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [selectedDateFilter, setSelectedDateFilter] = useState(null);
 
@@ -87,16 +83,13 @@ export default function Dashboard() {
     (b) => b.status === "CONFIRMED",
   ).length;
 
-  // Filtered list based on active tab, status filter, date, and search
+  // Filtered list based on active tab, date, and search
   const filteredBookings = useMemo(() => {
     if (!bookings) return [];
     return bookings.filter((b) => {
       // Type tab
       if (activeTab === "APPOINTMENT" && b.type !== "APPOINTMENT") return false;
       if (activeTab === "PARKING" && b.type !== "PARKING") return false;
-
-      // Status filter
-      if (statusFilter !== "ALL" && b.status !== statusFilter) return false;
 
       // Date filter if selected from calendar
       if (selectedDateFilter && b.date !== selectedDateFilter) return false;
@@ -118,11 +111,10 @@ export default function Dashboard() {
 
       return true;
     });
-  }, [bookings, activeTab, statusFilter, selectedDateFilter, searchFilter]);
+  }, [bookings, activeTab, selectedDateFilter, searchFilter]);
 
   function handleResetFilters() {
     setActiveTab("ALL");
-    setStatusFilter("ALL");
     setSelectedDateFilter(null);
   }
 
@@ -161,112 +153,112 @@ export default function Dashboard() {
       </div>
 
       {/* ================= METRIC STAT CARDS ROW ================= */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {/* Card 1: Dark hero card */}
-        <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-5 text-white shadow-md border-none">
-          <div className="flex items-start justify-between">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-300">
-              Today's Schedule
+        <div className="relative overflow-hidden rounded-xl bg-slate-900 p-3.5 text-white shadow-md border-none">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-medium uppercase tracking-wider text-slate-300 truncate">
+              Today's
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md text-teal-300">
-              <Calendar className="h-4 w-4" />
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-white/10 text-teal-300">
+              <Calendar className="h-3.5 w-3.5" />
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight">
+          <div className="mt-2 flex items-baseline gap-1.5">
+            <span className="text-2xl font-bold tracking-tight">
               {todayBookings.length}
             </span>
-            <span className="text-xs text-teal-200">
-              {todayBookings.length === 1 ? "Slot today" : "Slots today"}
+            <span className="text-[10px] text-teal-200">
+              {todayBookings.length === 1 ? "slot" : "slots"}
             </span>
           </div>
-          <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-[11px] text-slate-300">
-            <span>{upcoming.length} active upcoming</span>
+          <div className="mt-2 flex items-center justify-between border-t border-white/10 pt-2 text-[10px] text-slate-300">
+            <span>{upcoming.length} upcoming</span>
             <Link
               to="/my-bookings"
-              className="font-semibold text-teal-300 hover:text-teal-200 flex items-center gap-1"
+              className="font-semibold text-teal-300 hover:text-teal-200 flex items-center gap-0.5"
             >
-              View all <ChevronRight className="h-3 w-3" />
+              View <ChevronRight className="h-2.5 w-2.5" />
             </Link>
           </div>
         </div>
 
         {/* Card 2: Appointments */}
-        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all">
-          <div className="flex items-start justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+        <div className="rounded-xl border-none bg-white p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Appointments
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-              <UserCheck className="h-4 w-4" />
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+              <UserCheck className="h-3.5 w-3.5" />
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight text-slate-900">
+          <div className="mt-2 flex items-baseline gap-1.5">
+            <span className="text-2xl font-bold tracking-tight text-slate-900">
               {upcomingAppointments}
             </span>
-            <span className="text-xs font-medium text-emerald-600 flex items-center gap-0.5">
-              <TrendingUp className="h-3 w-3" /> Active
+            <span className="text-[10px] font-medium text-emerald-600 flex items-center gap-0.5">
+              <TrendingUp className="h-2.5 w-2.5" /> Active
             </span>
           </div>
-          <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
-            <span className="text-slate-400">Scheduled sessions</span>
+          <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2 text-[10px]">
+            <span className="text-slate-400">Scheduled</span>
             <Link
               to="/appointments"
               className="font-semibold text-indigo-600 hover:text-indigo-700"
             >
-              Book new →
+              Book →
             </Link>
           </div>
         </div>
 
         {/* Card 3: Parking Spaces */}
-        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all ">
-          <div className="flex items-start justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Parking Reserved
+        <div className="rounded-xl border-none bg-white p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              Parking
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-              <CarFront className="h-4 w-4" />
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+              <CarFront className="h-3.5 w-3.5" />
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight text-slate-900">
+          <div className="mt-2 flex items-baseline gap-1.5">
+            <span className="text-2xl font-bold tracking-tight text-slate-900">
               {upcomingParking}
             </span>
-            <span className="text-xs font-medium text-teal-600">
-              Slots booked
+            <span className="text-[10px] font-medium text-teal-600">
+              Reserved
             </span>
           </div>
-          <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
-            <span className="text-slate-400">Multi-floor access</span>
+          <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2 text-[10px]">
+            <span className="text-slate-400">Multi-floor</span>
             <Link
               to="/parking"
               className="font-semibold text-teal-600 hover:text-teal-700"
             >
-              Browse floors →
+              Browse →
             </Link>
           </div>
         </div>
 
         {/* Card 4: Confirmed Rate */}
-        <div className="rounded-2xl border-none bg-white p-5 shadow-2xs transition-all">
-          <div className="flex items-start justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Confirmed Total
+        <div className="rounded-xl border-none bg-white p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+              Confirmed
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-              <CheckCircle2 className="h-4 w-4" />
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
+              <CheckCircle2 className="h-3.5 w-3.5" />
             </div>
           </div>
-          <div className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight text-slate-900">
+          <div className="mt-2 flex items-baseline gap-1.5">
+            <span className="text-2xl font-bold tracking-tight text-slate-900">
               {confirmedCount}
             </span>
-            <span className="text-xs font-medium text-slate-500">verified</span>
+            <span className="text-[10px] font-medium text-slate-500">total</span>
           </div>
-          <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
-            <span className="text-slate-400">All-time record</span>
+          <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2 text-[10px]">
+            <span className="text-slate-400">All-time</span>
             <Link
               to="/my-bookings"
               className="font-semibold text-slate-700 hover:text-slate-900"
@@ -304,49 +296,8 @@ export default function Dashboard() {
 
           {/* Right Toolbar Controls */}
           <div className="flex items-center gap-2">
-            {/* Status Filter */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-xl bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 focus:outline-none"
-            >
-              <option value="ALL">All Statuses</option>
-              <option value="CONFIRMED">Confirmed</option>
-              <option value="PENDING">Pending</option>
-              <option value="COMPLETED">Completed</option>
-              <option value="CANCELLED">Cancelled</option>
-            </select>
-
-            {/* View Mode Toggle */}
-            <div className="flex items-center rounded-xl border-none bg-slate-50 p-0.5">
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`rounded-lg p-1.5 transition-colors cursor-pointer ${
-                  viewMode === "grid"
-                    ? "bg-white text-teal-700 shadow-2xs"
-                    : "text-slate-400 hover:text-slate-700"
-                }`}
-                title="Grid View"
-              >
-                <LayoutGrid className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`rounded-lg p-1.5 transition-colors cursor-pointer ${
-                  viewMode === "list"
-                    ? "bg-white text-teal-700 shadow-2xs"
-                    : "text-slate-400 hover:text-slate-700"
-                }`}
-                title="List View"
-              >
-                <ListIcon className="h-4 w-4" />
-              </button>
-            </div>
-
             {/* Reset Button */}
-            {(activeTab !== "ALL" ||
-              statusFilter !== "ALL" ||
-              selectedDateFilter) && (
+            {(activeTab !== "ALL" || selectedDateFilter) && (
               <button
                 onClick={handleResetFilters}
                 className="flex items-center gap-1 rounded-xl border border-slate-200 px-2.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 cursor-pointer"
@@ -391,9 +342,9 @@ export default function Dashboard() {
               </div>
             }
           />
-        ) : viewMode === "grid" ? (
-          /* ================= INSPIRATION CARD GRID ================= */
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        ) : (
+          /* ================= COMPACT CARD GRID ================= */
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {filteredBookings.map((b) => {
               const isAppt = b.type === "APPOINTMENT";
               const titleName = isAppt ? b.person?.name : b.space?.name;
@@ -405,34 +356,33 @@ export default function Dashboard() {
               return (
                 <div
                   key={b.id}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                  className="group relative flex flex-col justify-between rounded-xl border border-slate-200/80 bg-white p-4 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   <div>
                     {/* Top Header with Avatar, Name, and Status Badge */}
                     <div className="flex items-start justify-between gap-2">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5">
                         <div
-                          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white shadow-2xs ${
                             isAppt ? "bg-indigo-600" : "bg-slate-900"
                           }`}
                         >
                           {initial}
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
+                          <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors leading-tight">
                             {titleName}
                           </h4>
-                          <p className="text-xs text-slate-500">{subDetail}</p>
-                          <span className="mt-0.5 inline-block text-[10px] font-mono text-slate-400">
-                            {b.reference}
-                          </span>
+                          <p className="text-[11px] text-slate-500 leading-tight">
+                            {subDetail}
+                          </p>
                         </div>
                       </div>
                       <StatusBadge status={b.status} size="sm" />
                     </div>
 
                     {/* Time Slot & Date Badge */}
-                    <div className="mt-4 flex items-center justify-between rounded-xl bg-slate-50 px-3.5 py-2.5 text-xs text-slate-700 border border-slate-100">
+                    <div className="mt-3 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-700 border border-slate-100">
                       <div className="flex items-center gap-1.5 font-medium">
                         <Clock className="h-3.5 w-3.5 text-teal-600" />
                         <span>
@@ -445,10 +395,10 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-3">
+                  <div className="mt-3 flex items-center gap-2 border-t border-slate-100 pt-2.5">
                     <button
                       onClick={() => setSelectedBooking(b)}
-                      className="flex-1 rounded-xl bg-slate-900 py-2 text-xs font-semibold text-white shadow-2xs hover:bg-slate-800 transition-all cursor-pointer"
+                      className="flex-1 rounded-lg bg-slate-900 py-1.5 text-xs font-semibold text-white shadow-2xs hover:bg-slate-800 transition-all cursor-pointer"
                     >
                       View Details
                     </button>
@@ -456,7 +406,7 @@ export default function Dashboard() {
                       onClick={() =>
                         navigate(isAppt ? "/appointments" : "/parking")
                       }
-                      className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+                      className="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
                       title="Book another"
                     >
                       Book Again
@@ -465,68 +415,6 @@ export default function Dashboard() {
                 </div>
               );
             })}
-          </div>
-        ) : (
-          /* ================= LIST VIEW ================= */
-          <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-2xs">
-            <div className="divide-y divide-slate-100">
-              {filteredBookings.map((b) => {
-                const isAppt = b.type === "APPOINTMENT";
-                const titleName = isAppt ? b.person?.name : b.space?.name;
-                const subDetail = isAppt
-                  ? b.person?.position
-                  : b.space?.location;
-
-                return (
-                  <div
-                    key={b.id}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 hover:bg-slate-50/70 transition-colors"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white ${
-                          isAppt ? "bg-indigo-600" : "bg-teal-600"
-                        }`}
-                      >
-                        {titleName?.charAt(0)}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-slate-900">
-                            {titleName}
-                          </span>
-                          <Badge color={isAppt ? "indigo" : "teal"} size="sm">
-                            {isAppt ? "Appointment" : "Parking"}
-                          </Badge>
-                        </div>
-                        <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-500">
-                          <span>{subDetail}</span>
-                          <span>•</span>
-                          <span className="font-medium text-slate-700">
-                            {formatLongDate(b.date)}
-                          </span>
-                          <span>•</span>
-                          <span>
-                            {b.startTime}–{b.endTime}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3 self-end sm:self-center">
-                      <StatusBadge status={b.status} />
-                      <Button
-                        variant="secondary"
-                        size="xs"
-                        onClick={() => setSelectedBooking(b)}
-                      >
-                        Details
-                      </Button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         )}
       </div>
