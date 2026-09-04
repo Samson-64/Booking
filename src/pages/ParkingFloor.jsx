@@ -8,11 +8,7 @@ import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import Badge from "../components/Badge";
 import { todayLocalStr } from "../utils/format";
-import {
-  CarFront,
-  Calendar,
-  ArrowLeft,
-} from "lucide-react";
+import { CarFront, Calendar, ArrowLeft } from "lucide-react";
 
 export default function ParkingFloor() {
   const { floor } = useParams();
@@ -115,9 +111,7 @@ export default function ParkingFloor() {
                     <div className="flex items-center gap-3">
                       <div
                         className={`flex h-11 w-11 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
-                          isAvail
-                            ? "bg-teal-600"
-                            : "bg-slate-400"
+                          isAvail ? "bg-teal-600" : "bg-slate-400"
                         }`}
                       >
                         <CarFront className="h-5 w-5" />
@@ -126,14 +120,12 @@ export default function ParkingFloor() {
                         <h3 className="text-base font-bold text-slate-900">
                           {space.name}
                         </h3>
-                        <p className="text-xs text-slate-500">{space.location}</p>
+                        <p className="text-xs text-slate-500">
+                          {space.location}
+                        </p>
                       </div>
                     </div>
-                    <Badge
-                      color={isAvail ? "emerald" : "rose"}
-                      dot
-                      size="sm"
-                    >
+                    <Badge color={isAvail ? "emerald" : "rose"} dot size="sm">
                       {isAvail ? "Available" : "Occupied"}
                     </Badge>
                   </div>
@@ -162,4 +154,3 @@ export default function ParkingFloor() {
     </div>
   );
 }
-
