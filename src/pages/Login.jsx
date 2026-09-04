@@ -2,13 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, apiErrorMessage } from "../auth/AuthContext";
 import Button from "../components/Button";
-import {
-  ArrowRight,
-  BriefcaseBusiness,
-  Eye,
-  EyeOff,
-  User,
-} from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, Eye, EyeOff, User } from "lucide-react";
 
 export default function Login() {
   const { login, register, registerSpecialist } = useAuth();
@@ -247,10 +241,10 @@ function AccountType({ active, onClick, icon, title, detail }) {
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-xl border p-3 text-left transition ${active ? "border-teal-500 bg-teal-50 ring-1 ring-teal-500" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"}`}
+      className={`rounded-xl border p-3 text-left transition ${active ? "border-none bg-teal-50" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"}`}
     >
       <span
-        className={`mb-2 grid h-7 w-7 place-items-center rounded-lg ${active ? "bg-teal-600 text-white" : "bg-slate-100 text-slate-500"}`}
+        className={`mb-2 grid h-7 w-7 place-items-center rounded-lg ${active ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"}`}
       >
         {icon}
       </span>
