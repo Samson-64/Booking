@@ -8,6 +8,7 @@ import {
   BookmarkCheck,
   CalendarCheck,
   Users,
+  User,
   Settings,
   LogOut,
   Bell,
@@ -33,13 +34,13 @@ function MainLayout() {
   const navItems = [
     ...(isSpecialist
       ? [
-        {
-          to: "/specialist",
-          label: "My Appointments",
-          icon: Users,
-          end: false,
-          badge: "Provider",
-        },
+          {
+            to: "/specialist",
+            label: "My Appointments",
+            icon: Users,
+            end: false,
+            badge: "Provider",
+          },
         ]
       : []),
     { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -74,14 +75,11 @@ function MainLayout() {
   return (
     <div className="flex min-h-screen bg-[#F8FAFC]">
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex">
+      <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex rounded-tr-3xl rounded-br-3xl">
         <div>
           {/* Logo & Brand Header */}
           <div className="flex h-20 items-center justify-between px-6 border-b border-slate-800/80">
             <div className="flex items-center gap-3">
-              {/* <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500 text-white shadow-md shadow-teal-500/20">
-                <Sparkles className="h-5 w-5" />
-              </div> */}
               <div>
                 <span className="text-base font-bold tracking-tight text-white">
                   Booking Portal
@@ -114,13 +112,7 @@ function MainLayout() {
                     {({ isActive }) => (
                       <>
                         <div className="flex items-center gap-3">
-                          <Icon
-                            className={`h-5 w-5 transition-colors ${
-                              isActive
-                                ? "text-teal-600"
-                                : "text-slate-400 group-hover:text-slate-200"
-                            }`}
-                          />
+                          <Icon className="h-5 w-5 transition-colors"/>
                           <span>{item.label}</span>
                         </div>
                         {item.badge && (
@@ -152,12 +144,16 @@ function MainLayout() {
                 {isStaff
                   ? "Staff Portal Active"
                   : isSpecialist
-                  ? "Provider Portal"
-                  : "Client Portal"}
+                    ? "Provider Portal"
+                    : "Client Portal"}
               </span>
               <span
                 className={`h-2 w-2 rounded-full ${
-                  isStaff ? "bg-amber-400 animate-pulse" : isSpecialist ? "bg-indigo-400" : "bg-teal-400"
+                  isStaff
+                    ? "bg-amber-400 animate-pulse"
+                    : isSpecialist
+                      ? "bg-indigo-400"
+                      : "bg-teal-400"
                 }`}
               />
             </div>
@@ -211,7 +207,9 @@ function MainLayout() {
               {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white">
                 <Sparkles className="h-4 w-4" />
               </div> */}
-              <span className="text-sm font-bold text-slate-900">Booking Portal</span>
+              <span className="text-sm font-bold text-slate-900">
+                Booking Portal
+              </span>
             </div>
           </div>
 
@@ -224,7 +222,7 @@ function MainLayout() {
                 placeholder="Search appointments, slots, providers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-slate-200 bg-slate-50/70 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:border-teal-500 focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/15"
+                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
               />
             </div>
           </div>
@@ -233,14 +231,14 @@ function MainLayout() {
           <div className="flex items-center gap-3 sm:gap-4">
             {/* date display */}
             <div className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-3.5 py-1.5 text-xs font-medium text-slate-600">
-              <CalendarDays className="h-3.5 w-3.5 text-teal-600" />
+              <CalendarDays className="h-3.5 w-3.5 text-sleat-900" />
               <span>{todayFormatted}</span>
             </div>
 
             {/* Action Button */}
             <button
               onClick={() => navigate("/appointments")}
-              className="flex items-center gap-1.5 rounded-full bg-teal-600 px-3.5 py-2 text-xs font-semibold text-white shadow-sm shadow-teal-700/20 hover:bg-teal-500 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 rounded-full bg-slate-900 px-3.5 py-2 text-xs font-semibold text-white shadow-sm shadow-teal-700/20 hover:bg-slate-800 transition-all cursor-pointer"
             >
               <Plus className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Book New</span>
@@ -254,7 +252,7 @@ function MainLayout() {
                 aria-label="Notifications"
               >
                 <Bell className="h-4 w-4" />
-                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-teal-500 ring-2 ring-white" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-slate-900 ring-2 ring-white" />
               </button>
 
               {notificationsOpen && (
@@ -269,7 +267,9 @@ function MainLayout() {
                   </div>
                   <div className="py-3 px-1 text-xs text-slate-500 space-y-2">
                     <div className="rounded-lg bg-teal-50/60 p-2 border border-teal-100/60">
-                      <p className="font-semibold text-teal-900">System Ready</p>
+                      <p className="font-semibold text-teal-900">
+                        System Ready
+                      </p>
                       <p className="text-[11px] text-teal-700 mt-0.5">
                         Real-time appointment and parking sync active.
                       </p>
@@ -285,8 +285,8 @@ function MainLayout() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center gap-2.5 rounded-full border border-slate-200/80 bg-white p-1 pl-1.5 pr-3 shadow-2xs hover:border-slate-300 transition-colors cursor-pointer"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-xs font-bold text-white shadow-2xs">
-                  {user?.name?.charAt(0) || "U"}
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 text-xs font-bold text-white shadow-2xs">
+                  <User className="text-slate-900" />
                 </div>
                 <div className="hidden sm:block text-left">
                   <div className="text-xs font-semibold text-slate-900 leading-tight">
@@ -388,7 +388,9 @@ function MainLayout() {
                   {/* <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-500 text-white">
                     <Sparkles className="h-5 w-5" />
                   </div> */}
-                  <span className="text-base font-bold text-white">PulseBook</span>
+                  <span className="text-base font-bold text-white">
+                    PulseBook
+                  </span>
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}
