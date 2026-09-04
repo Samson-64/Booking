@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, apiErrorMessage } from "../auth/AuthContext";
 import Button from "../components/Button";
 import { ArrowRight, BriefcaseBusiness, Eye, EyeOff, User } from "lucide-react";
+
+const carouselSlides = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=85",
+    heading: "Book Appointments Instantly",
+    subtext: "Schedule with top specialists in just a few taps.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?auto=format&fit=crop&w=1400&q=85",
+    heading: "Reserve Your Parking Spot",
+    subtext: "Secure convenient parking before you even arrive.",
+  },
+];
 
 export default function Login() {
   const { login, register, registerSpecialist } = useAuth();
@@ -17,7 +32,17 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const from = location.state?.from?.pathname || "/";
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -202,18 +227,45 @@ export default function Login() {
           </div>
         </section>
         <section
-          aria-label="Espacio de trabajo"
+          aria-label="Showcase"
           className="relative hidden min-h-130 overflow-hidden bg-[#062b5e] lg:block"
         >
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#062b5e_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%),url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=85')] bg-cover bg-center" />
+          {carouselSlides.map((slide, i) => (
+            <div
+              key={i}
+              className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+              style={{ opacity: currentSlide === i ? 1 : 0 }}
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url('${slide.image}')` }}
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,#062b5e_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%)]" />
+            </div>
+          ))}
           <div className="absolute inset-y-0 -left-20 w-44 -skew-x-8 bg-[#eef5fc]" />
           <div className="absolute bottom-12 left-16 max-w-xs text-white">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[.22em] text-cyan-200">
               Your space, your reservations
             </p>
             <p className="text-2xl font-semibold leading-tight">
-              Everything you need to work better.
+              {carouselSlides[currentSlide].heading}
             </p>
+            <p className="mt-2 text-sm text-cyan-100/80">
+              {carouselSlides[currentSlide].subtext}
+            </p>
+          </div>
+          <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+            {carouselSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  currentSlide === i ? "w-6 bg-white" : "w-1.5 bg-white/40"
+                }`}
+              />
+            ))}
           </div>
         </section>
       </div>
