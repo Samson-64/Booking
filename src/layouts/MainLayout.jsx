@@ -122,7 +122,7 @@ function MainLayout() {
                     {({ isActive }) => (
                       <>
                         <div className="flex items-center gap-3">
-                          <Icon className="h-5 w-5 transition-colors"/>
+                          <Icon className="h-5 w-5 transition-colors" />
                           <span>{item.label}</span>
                         </div>
                         {item.badge && (
