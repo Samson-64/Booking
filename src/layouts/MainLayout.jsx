@@ -88,6 +88,19 @@ function MainLayout() {
             </div>
           </div>
 
+          {/* <div className="hidden md:flex items-center">
+            <div className="relative w-72 lg:w-96">
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Search appointments, slots, providers..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
+              />
+            </div>
+          </div> */}
+
           {/* Navigation Links */}
           <div className="px-3 py-6">
             <div className="mb-2 px-3 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
@@ -204,9 +217,6 @@ function MainLayout() {
               <Menu className="h-5 w-5" />
             </button>
             <div className="flex items-center gap-2">
-              {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-600 text-white">
-                <Sparkles className="h-4 w-4" />
-              </div> */}
               <span className="text-sm font-bold text-slate-900">
                 Booking Portal
               </span>

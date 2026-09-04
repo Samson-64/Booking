@@ -219,7 +219,7 @@ export default function Appointments() {
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                   1
                 </span>
                 <h2 className="text-sm font-bold text-slate-900">
@@ -245,20 +245,20 @@ export default function Appointments() {
                       onClick={() => selectPerson(person)}
                       className={`group relative flex items-center justify-between rounded-2xl border p-4 text-left transition-all cursor-pointer ${
                         isSelected
-                          ? "border-teal-500 bg-teal-50/50 shadow-sm "
-                          : "border-slate-200 bg-white hover:border-teal-300 hover:bg-slate-50/50"
+                          ? "border-none bg-teal-50/50 shadow-sm "
+                          : "border-none bg-white hover:bg-slate-50/50"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
                           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white transition-transform group-hover:scale-105 ${
-                            isSelected ? "bg-teal-600" : "bg-slate-700"
+                            isSelected ? "bg-black/80" : "bg-slate-900"
                           }`}
                         >
                           {person.name.charAt(0)}
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-slate-900 group-hover:text-teal-700">
+                          <div className="text-sm font-bold text-slate-900 group-hover:text-slate-900">
                             {person.name}
                           </div>
                           <div className="text-xs text-slate-500">
@@ -267,7 +267,7 @@ export default function Appointments() {
                         </div>
                       </div>
                       {isSelected && (
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-white">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-white">
                           <Check className="h-3.5 w-3.5" />
                         </div>
                       )}
@@ -282,7 +282,7 @@ export default function Appointments() {
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                   2
                 </span>
                 <h2 className="text-sm font-bold text-slate-900">
@@ -290,7 +290,7 @@ export default function Appointments() {
                 </h2>
               </div>
               {selectedDate && (
-                <span className="text-xs font-semibold text-teal-600">
+                <span className="text-xs font-semibold text-slate-900">
                   {formatLongDate(selectedDate)}
                 </span>
               )}
@@ -319,7 +319,7 @@ export default function Appointments() {
                           ? "bg-slate-900 text-white shadow-md ring-2 ring-teal-500/40"
                           : isPast
                             ? "cursor-not-allowed bg-slate-50 text-slate-300 border border-slate-100"
-                            : "border border-slate-200 bg-white text-slate-700 hover:border-teal-400 hover:bg-teal-50/30"
+                            : "border border-slate-200 bg-white text-slate-700  hover:bg-gray-100"
                       }`}
                     >
                       <span className="text-[11px] font-medium uppercase tracking-wider opacity-80">
@@ -338,7 +338,7 @@ export default function Appointments() {
           {/* Step 3: Choose time window */}
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs">
             <div className="flex items-center gap-2.5 mb-4">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                 3
               </span>
               <h2 className="text-sm font-bold text-slate-900">
@@ -364,7 +364,7 @@ export default function Appointments() {
                 {/* Working hours banner */}
                 <div className="flex items-center justify-between rounded-xl bg-teal-50/70 p-3 text-xs text-teal-900 border border-none">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-teal-600" />
+                    <Clock className="h-4 w-4 text-slate-900" />
                     <span>
                       Working hours:{" "}
                       <strong className="font-bold">
@@ -471,7 +471,7 @@ export default function Appointments() {
               <Button
                 variant="gradient"
                 size="md"
-                className="w-full justify-center"
+                className="w-full justify-center bg-slate-900"
                 onClick={handleConfirm}
                 disabled={!canConfirm}
                 loading={submitting}
