@@ -9,11 +9,19 @@ const statusConfig = {
 };
 
 export function StatusBadge({ status, size = "md", className = "" }) {
-  const config = statusConfig[status] || { color: "gray", label: status, dot: false };
+  const config = statusConfig[status] || {
+    color: "gray",
+    label: status,
+    dot: false,
+  };
   return (
-    <Badge color={config.color} dot={config.dot} size={size} className={className}>
+    <Badge
+      color={config.color}
+      dot={config.dot}
+      size={size}
+      className={className}
+    >
       {config.label}
     </Badge>
   );
 }
-

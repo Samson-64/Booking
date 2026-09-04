@@ -26,8 +26,7 @@ export default function Button({
       "bg-indigo-600 text-white shadow-sm hover:bg-indigo-700 focus-visible:ring-indigo-500",
     secondary:
       "bg-white text-slate-700 border border-slate-200/80 shadow-2xs hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 focus-visible:ring-slate-400",
-    dark:
-      "bg-slate-900 text-white shadow-sm hover:bg-slate-800 focus-visible:ring-slate-700",
+    dark: "bg-slate-900 text-white shadow-sm hover:bg-slate-800 focus-visible:ring-slate-700",
     danger:
       "bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 hover:text-rose-800 focus-visible:ring-rose-500",
     dangerSolid:
@@ -80,4 +79,3 @@ function SpinnerSm() {
     </svg>
   );
 }
-

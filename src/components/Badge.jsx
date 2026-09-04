@@ -20,14 +20,23 @@ const dotColors = {
   indigo: "bg-indigo-500",
 };
 
-function Badge({ color = "gray", dot = false, size = "md", children, className = "" }) {
-  const sizeClasses = size === "sm" ? "px-2 py-0.5 text-xs" : "px-2.5 py-1 text-xs";
+function Badge({
+  color = "gray",
+  dot = false,
+  size = "md",
+  children,
+  className = "",
+}) {
+  const sizeClasses =
+    size === "sm" ? "px-2 py-0.5 text-xs" : "px-2.5 py-1 text-xs";
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full font-medium border shadow-2xs whitespace-nowrap transition-colors ${colorStyles[color] || colorStyles.gray} ${sizeClasses} ${className}`}
     >
       {dot && (
-        <span className={`h-1.5 w-1.5 rounded-full ${dotColors[color] || dotColors.gray}`} />
+        <span
+          className={`h-1.5 w-1.5 rounded-full ${dotColors[color] || dotColors.gray}`}
+        />
       )}
       {children}
     </span>
