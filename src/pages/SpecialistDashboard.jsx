@@ -123,7 +123,7 @@ export default function SpecialistDashboard() {
             variant="secondary"
             size="sm"
             onClick={() => navigate("/parking")}
-            icon={<Car className="h-4 w-4 text-teal-600" />}
+            icon={<Car className="h-4 w-4 text-slate-900" />}
           >
             Reserve Parking
           </Button>
@@ -132,6 +132,7 @@ export default function SpecialistDashboard() {
             size="sm"
             onClick={() => navigate("/appointments")}
             icon={<Plus className="h-4 w-4" />}
+            className="bg-slate-900"
           >
             Book Appointment
           </Button>
