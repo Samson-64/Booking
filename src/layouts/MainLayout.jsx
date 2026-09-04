@@ -75,13 +75,13 @@ function MainLayout() {
   return (
     <div className="flex min-h-screen bg-[#F8FAFC]">
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex rounded-tr-3xl rounded-br-3xl">
+      <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex rounded-3xl border-10 border-white overflow-hidden">
         <div>
           {/* Logo & Brand Header */}
-          <div className="flex h-20 items-center justify-between px-6 border-b border-slate-800/80">
+          <div className="flex h-20 items-center justify-between px-6 border-b  border-slate-800/80">
             <div className="flex items-center gap-3">
               <div>
-                <span className="text-base font-bold tracking-tight text-white">
+                <span className="text-xl font-bold tracking-tight text-white">
                   Booking Portal
                 </span>
               </div>
