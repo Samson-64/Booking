@@ -70,11 +70,11 @@ export default function Parking() {
             <button
               key={f.floor}
               onClick={() => openFloor(f.floor)}
-              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 text-left shadow-2xs transition-all duration-200 hover:-translate-y-1 hover:border-teal-400 hover:shadow-md cursor-pointer"
+              className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 text-left shadow-2xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-900 hover:shadow-md cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-600 group-hover:text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-slate-900 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                     <CarFront className="h-6 w-6" />
                   </div>
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors group-hover:bg-teal-50 group-hover:text-teal-600">
@@ -99,7 +99,7 @@ export default function Parking() {
                 <span className="text-xs font-semibold text-slate-700">
                   {f.count} Total Slot{f.count !== 1 ? "s" : ""}
                 </span>
-                <span className="text-xs font-semibold text-teal-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                <span className="text-xs font-semibold text-slate-900 group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
                   View Spaces <ChevronRight className="h-3 w-3" />
                 </span>
               </div>
