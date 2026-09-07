@@ -85,7 +85,7 @@ function MainLayout() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center ml-7">
+          <div className="hidden md:flex items-center ml-7 mt-5">
             <div className="relative w-72 lg:w-40 ">
               <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
