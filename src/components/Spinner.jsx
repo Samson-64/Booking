@@ -4,7 +4,7 @@ function Spinner({ label = "Loading…" }) {
       <div className="relative flex h-9 w-9 items-center justify-center">
         <div className="absolute h-9 w-9 animate-ping rounded-full bg-teal-400/20" />
         <svg
-          className="h-7 w-7 animate-spin text-teal-600"
+          className="h-7 w-7 animate-spin text-slate-900"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
