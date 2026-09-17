@@ -4,12 +4,21 @@
 import axios from "axios";
 
 const AUTH_KEY = "pulsebook.auth";
+const REFRESH_KEY = "pulsebook.refresh";
 
 // Shared axios instance. Requests to protected endpoints pick up the stored
 // JWT automatically via the request interceptor below.
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL + "/api",
 });
+
+export function getRefreshToken() {
+  try {
+    return localStorage.getItem(REFRESH_KEY);
+  } catch {
+    return null;
+  }
+}
 
 // Attach the stored JWT to every outgoing request, when present.
 api.interceptors.request.use((config) => {
@@ -25,10 +34,85 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Response interceptor: attempt token refresh on 401 errors.
+let isRefreshing = false;
+let failedQueue = [];
+
+function processQueue(error, token) {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+  failedQueue = [];
+}
+
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            return api(originalRequest);
+          })
+          .catch((err) => Promise.reject(err));
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      const refreshToken = getRefreshToken();
+      if (!refreshToken) {
+        clearAuth();
+        isRefreshing = false;
+        return Promise.reject(error);
+      }
+
+      try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_BASE_URL + "/api/auth/refresh",
+          { refresh_token: refreshToken }
+        );
+
+        const raw = localStorage.getItem(AUTH_KEY);
+        if (raw) {
+          const session = JSON.parse(raw);
+          session.token = data.access_token;
+          localStorage.setItem(AUTH_KEY, JSON.stringify(session));
+        }
+        localStorage.setItem(REFRESH_KEY, data.refresh_token);
+
+        api.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
+        originalRequest.headers.Authorization = `Bearer ${data.access_token}`;
+
+        processQueue(null, data.access_token);
+        return api(originalRequest);
+      } catch (refreshError) {
+        processQueue(refreshError, null);
+        clearAuth();
+        return Promise.reject(refreshError);
+      } finally {
+        isRefreshing = false;
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 // Clear the locally-stored session (used on logout / unauthorized responses).
 export function clearAuth() {
   try {
     localStorage.removeItem(AUTH_KEY);
+    localStorage.removeItem(REFRESH_KEY);
   } catch {
     // best-effort write; ignore failures
   }
