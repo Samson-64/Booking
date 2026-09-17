@@ -1,9 +1,10 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { api, apiErrorMessage, clearAuth } from "../api/client";
+import { api, apiErrorMessage, clearAuth, getRefreshToken } from "../api/client";
 
 const AuthContext = createContext(null);
 
 const AUTH_KEY = "pulsebook.auth";
+const REFRESH_KEY = "pulsebook.refresh";
 
 function readSession() {
   try {
@@ -15,12 +16,16 @@ function readSession() {
   return null;
 }
 
-function setSession(token, user) {
+function setSession(token, user, refreshToken) {
   try {
     if (user) {
       localStorage.setItem(AUTH_KEY, JSON.stringify({ token, user }));
+      if (refreshToken) {
+        localStorage.setItem(REFRESH_KEY, refreshToken);
+      }
     } else {
       localStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(REFRESH_KEY);
     }
   } catch {
     // best-effort write; ignore failures
@@ -39,7 +44,7 @@ export function AuthProvider({ children }) {
     async function login(email, password) {
       const { data } = await api.post("/auth/login", { email, password });
       const next = toPublicUser(data.user);
-      setSession(data.access_token, next);
+      setSession(data.access_token, next, data.refresh_token);
       setUser(next);
       return next;
     }
@@ -51,7 +56,7 @@ export function AuthProvider({ children }) {
         password,
       });
       const next = toPublicUser(data.user);
-      setSession(data.access_token, next);
+      setSession(data.access_token, next, data.refresh_token);
       setUser(next);
       return next;
     }
@@ -64,12 +69,18 @@ export function AuthProvider({ children }) {
         position,
       });
       const next = toPublicUser(data.user);
-      setSession(data.access_token, next);
+      setSession(data.access_token, next, data.refresh_token);
       setUser(next);
       return next;
     }
 
     function logout() {
+      const refreshToken = getRefreshToken();
+      if (refreshToken) {
+        api
+          .post("/auth/logout", { refresh_token: refreshToken })
+          .catch(() => {});
+      }
       clearAuth();
       setUser(null);
     }
