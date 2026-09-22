@@ -293,7 +293,7 @@ function AccountType({ active, onClick, icon, title, detail }) {
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-xl border p-3 text-left transition ${active ? "border-none bg-teal-50" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"}`}
+      className={`rounded-xl border p-3 text-left transition ${active ? "border-none bg-slate-50" : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"}`}
     >
       <span
         className={`mb-2 grid h-7 w-7 place-items-center rounded-lg ${active ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"}`}

@@ -4,7 +4,7 @@ const colorStyles = {
   red: "bg-rose-50 text-rose-700 border-rose-200/80",
   amber: "bg-amber-50 text-amber-700 border-amber-200/80",
   blue: "bg-sky-50 text-sky-700 border-sky-200/80",
-  teal: "bg-teal-50 text-teal-700 border-teal-200/80",
+  slate: "bg-slate-50 text-slate-700 border-slate-200/80",
   purple: "bg-purple-50 text-purple-700 border-purple-200/80",
   indigo: "bg-indigo-50 text-indigo-700 border-indigo-200/80",
 };
@@ -15,7 +15,7 @@ const dotColors = {
   red: "bg-rose-500",
   amber: "bg-amber-500",
   blue: "bg-sky-500",
-  teal: "bg-teal-500",
+  slate: "bg-slate-500",
   purple: "bg-purple-500",
   indigo: "bg-indigo-500",
 };

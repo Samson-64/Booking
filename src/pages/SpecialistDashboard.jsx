@@ -162,7 +162,7 @@ export default function SpecialistDashboard() {
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Upcoming Confirmed
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-50 text-slate-600">
                 <CalendarDays className="h-4 w-4" />
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function SpecialistDashboard() {
               <span
                 className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
                   active
-                    ? "bg-teal-50 text-teal-700 border border-teal-200"
+                    ? "bg-slate-50 text-slate-700 border border-slate-200"
                     : "bg-slate-200 text-slate-600"
                 }`}
               >
@@ -245,7 +245,7 @@ export default function SpecialistDashboard() {
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 {/* Left info */}
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-50 text-slate-600">
                     <Users className="h-6 w-6" />
                   </div>
                   <div className="space-y-1">

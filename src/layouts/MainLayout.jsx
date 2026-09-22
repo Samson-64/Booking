@@ -93,7 +93,7 @@ function MainLayout() {
                 placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-white py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
+                className="w-full rounded-full border border-white py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-slate-500/5"
               />
             </div>
           </div>
@@ -129,8 +129,8 @@ function MainLayout() {
                           <span
                             className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
                               isActive
-                                ? "bg-teal-100 text-teal-800"
-                                : "bg-teal-900/60 text-teal-300 border border-teal-700/50"
+                                ? "bg-slate-100 text-slate-800"
+                                : "bg-slate-900/60 text-slate-300 border border-slate-700/50"
                             }`}
                           >
                             {item.badge}
@@ -163,7 +163,7 @@ function MainLayout() {
                     ? "bg-amber-400 animate-pulse"
                     : isSpecialist
                       ? "bg-indigo-400"
-                      : "bg-teal-400"
+                      : "bg-slate-400"
                 }`}
               />
             </div>
@@ -198,7 +198,7 @@ function MainLayout() {
             >
               <Bell className="h-4 w-4" />
               <span>Notifications</span>
-              <span className="ml-auto h-2 w-2 rounded-full bg-teal-400" />
+              <span className="ml-auto h-2 w-2 rounded-full bg-slate-400" />
             </button>
 
             {notificationsOpen && (
@@ -207,14 +207,14 @@ function MainLayout() {
                   <span className="text-xs font-semibold text-slate-800">
                     Notifications
                   </span>
-                  <span className="text-[10px] text-teal-600 font-medium">
+                  <span className="text-[10px] text-slate-600 font-medium">
                     All caught up
                   </span>
                 </div>
                 <div className="py-3 px-1 text-xs text-slate-500 space-y-2">
-                  <div className="rounded-lg bg-teal-50/60 p-2 border border-teal-100/60">
-                    <p className="font-semibold text-teal-900">System Ready</p>
-                    <p className="text-[11px] text-teal-700 mt-0.5">
+                  <div className="rounded-lg bg-slate-50/60 p-2 border border-slate-100/60">
+                    <p className="font-semibold text-slate-900">System Ready</p>
+                    <p className="text-[11px] text-slate-700 mt-0.5">
                       Real-time appointment and parking sync active.
                     </p>
                   </div>
@@ -262,7 +262,7 @@ function MainLayout() {
                 placeholder="Search appointments, slots, providers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-teal-500/5"
+                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-slate-500/5"
               />
             </div>
           </div> */}
@@ -350,13 +350,13 @@ function MainLayout() {
                         <div className="flex items-center gap-3">
                           <Icon
                             className={`h-5 w-5 ${
-                              isActive ? "text-teal-600" : "text-slate-400"
+                              isActive ? "text-slate-600" : "text-slate-400"
                             }`}
                           />
                           <span>{item.label}</span>
                         </div>
                         {item.badge && (
-                          <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-bold text-teal-800">
+                          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-800">
                             {item.badge}
                           </span>
                         )}
@@ -375,7 +375,7 @@ function MainLayout() {
             >
               <Bell className="h-4 w-4" />
               <span>Notifications</span>
-              <span className="ml-auto h-2 w-2 rounded-full bg-teal-400" />
+              <span className="ml-auto h-2 w-2 rounded-full bg-slate-400" />
             </button>
             <button
               onClick={handleLogout}

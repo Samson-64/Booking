@@ -245,7 +245,7 @@ export default function Appointments() {
                       onClick={() => selectPerson(person)}
                       className={`group relative flex items-center justify-between rounded-2xl border p-4 text-left transition-all cursor-pointer ${
                         isSelected
-                          ? "border-none bg-teal-50/50 shadow-sm "
+                          ? "border-none bg-slate-50/50 shadow-sm "
                           : "border-none bg-white hover:bg-slate-50/50"
                       }`}
                     >
@@ -316,7 +316,7 @@ export default function Appointments() {
                       onClick={() => selectDate(date)}
                       className={`flex flex-col items-center justify-center rounded-xl p-2.5 transition-all text-center cursor-pointer ${
                         isSelected
-                          ? "bg-slate-900 text-white shadow-md ring-2 ring-teal-500/40"
+                          ? "bg-slate-900 text-white shadow-md ring-2 ring-slate-500/40"
                           : isPast
                             ? "cursor-not-allowed bg-slate-50 text-slate-300 border border-slate-100"
                             : "border border-slate-200 bg-white text-slate-700  hover:bg-gray-100"
@@ -362,7 +362,7 @@ export default function Appointments() {
             ) : (
               <div className="space-y-4">
                 {/* Working hours banner */}
-                <div className="flex items-center justify-between rounded-xl bg-teal-50/70 p-3 text-xs text-teal-900 border border-none">
+                <div className="flex items-center justify-between rounded-xl bg-slate-50/70 p-3 text-xs text-slate-900 border border-none">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-slate-900" />
                     <span>
@@ -373,7 +373,7 @@ export default function Appointments() {
                       </strong>
                     </span>
                   </div>
-                  <span className="font-semibold text-teal-700">
+                  <span className="font-semibold text-slate-700">
                     {(availability.existing || []).length} Bookings on this day
                   </span>
                 </div>
@@ -497,14 +497,14 @@ function Confirmation({ success, onReset }) {
     <div className="mx-auto max-w-lg animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Top Header Banner */}
-        <div className="bg-teal-600 p-8 text-center text-white">
+        <div className="bg-slate-600 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>
           <h2 className="text-xl font-bold tracking-tight">
             Appointment Booked Successfully!
           </h2>
-          <p className="mt-1 text-xs text-teal-100">
+          <p className="mt-1 text-xs text-slate-100">
             Reference token:{" "}
             <span className="font-mono font-bold text-white">
               {appointment.reference}
@@ -530,7 +530,7 @@ function Confirmation({ success, onReset }) {
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Time Window</span>
-            <span className="font-bold text-teal-700">
+            <span className="font-bold text-slate-700">
               {appointment.startTime} – {appointment.endTime}
             </span>
           </div>

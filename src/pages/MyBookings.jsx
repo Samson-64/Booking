@@ -99,7 +99,7 @@ export default function MyBookings() {
                 <span
                   className={`rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
                     active
-                      ? "bg-teal-50 text-teal-700 border border-teal-200"
+                      ? "bg-slate-50 text-slate-700 border border-slate-200"
                       : "bg-slate-200 text-slate-600"
                   }`}
                 >
@@ -117,7 +117,7 @@ export default function MyBookings() {
               onClick={() => setFilterType("ALL")}
               className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
                 filterType === "ALL"
-                  ? "bg-teal-50 text-teal-700"
+                  ? "bg-slate-50 text-slate-700"
                   : "text-slate-500 hover:text-slate-800"
               }`}
             >
@@ -127,7 +127,7 @@ export default function MyBookings() {
               onClick={() => setFilterType("APPOINTMENT")}
               className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
                 filterType === "APPOINTMENT"
-                  ? "bg-teal-50 text-teal-700"
+                  ? "bg-slate-50 text-slate-700"
                   : "text-slate-500 hover:text-slate-800"
               }`}
             >
@@ -137,7 +137,7 @@ export default function MyBookings() {
               onClick={() => setFilterType("PARKING")}
               className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
                 filterType === "PARKING"
-                  ? "bg-teal-50 text-teal-700"
+                  ? "bg-slate-50 text-slate-700"
                   : "text-slate-500 hover:text-slate-800"
               }`}
             >
@@ -169,7 +169,7 @@ export default function MyBookings() {
                   {/* Avatar Icon */}
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-2xs ${
-                      isAppt ? "bg-teal-600" : "bg-indigo-600"
+                      isAppt ? "bg-slate-600" : "bg-indigo-600"
                     }`}
                   >
                     {isAppt ? (
@@ -187,7 +187,7 @@ export default function MyBookings() {
                           ? `Appointment with ${b.person?.name}`
                           : `Space ${b.space?.name}`}
                       </h3>
-                      <Badge color={isAppt ? "blue" : "teal"} size="xs">
+                      <Badge color={isAppt ? "blue" : "slate"} size="xs">
                         {isAppt ? "Provider" : "Parking Bay"}
                       </Badge>
                     </div>

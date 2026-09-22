@@ -151,13 +151,13 @@ export default function ParkingBooking() {
                 : "/parking",
             )
           }
-          className="flex items-center gap-1.5 text-xs font-semibold text-teal-600 hover:text-teal-700 transition-colors mb-2 cursor-pointer"
+          className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-700 transition-colors mb-2 cursor-pointer"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           {floor ? `Back to ${floor}` : "Back to parking"}
         </button>
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-md shadow-teal-600/20">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-600 text-white shadow-md shadow-slate-600/20">
             <CarFront className="h-6 w-6" />
           </div>
           <div>
@@ -195,7 +195,7 @@ export default function ParkingBooking() {
                 value={date}
                 min={todayLocalStr()}
                 onChange={(e) => changeDate(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-3 focus:ring-teal-500/15"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-slate-500 focus:outline-none focus:ring-3 focus:ring-slate-500/15"
               />
             </div>
 
@@ -319,14 +319,14 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
     <div className="animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Header */}
-        <div className="bg-teal-600 p-8 text-center text-white">
+        <div className="bg-slate-600 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>
           <h2 className="text-xl font-bold tracking-tight">
             Parking Space Reserved!
           </h2>
-          <p className="mt-1 text-xs text-teal-100">
+          <p className="mt-1 text-xs text-slate-100">
             Booking Pass:{" "}
             <span className="font-mono font-bold text-white">
               {booking.reference}
@@ -354,7 +354,7 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
           </div>
           <div className="flex justify-between border-b border-slate-100 py-2.5">
             <span className="text-slate-500 font-medium">Reserved Hours</span>
-            <span className="font-bold text-teal-700">
+            <span className="font-bold text-slate-700">
               {booking.startTime} – {booking.endTime}
             </span>
           </div>

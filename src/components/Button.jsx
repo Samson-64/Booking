@@ -21,7 +21,7 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-teal-600 text-white shadow-sm shadow-teal-700/20 hover:bg-teal-500 focus-visible:ring-teal-500",
+      "bg-slate-600 text-white shadow-sm shadow-slate-700/20 hover:bg-slate-500 focus-visible:ring-slate-500",
     gradient:
       "bg-indigo-600 text-white shadow-sm hover:bg-indigo-700 focus-visible:ring-indigo-500",
     secondary:

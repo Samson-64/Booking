@@ -52,7 +52,7 @@ export default function ParkingFloor() {
         <div>
           <button
             onClick={() => navigate("/parking")}
-            className="flex items-center gap-1.5 text-xs font-semibold text-teal-600 hover:text-teal-700 transition-colors mb-2 cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-700 transition-colors mb-2 cursor-pointer"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Floors
           </button>
@@ -60,7 +60,7 @@ export default function ParkingFloor() {
             <h1 className="text-2xl font-bold tracking-tight text-slate-900">
               {floor}
             </h1>
-            <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700 border border-teal-200">
+            <span className="rounded-full bg-slate-50 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
               {availableCount} Available Today
             </span>
           </div>
@@ -71,14 +71,14 @@ export default function ParkingFloor() {
 
         {/* Date Selector Pill */}
         <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xs">
-          <Calendar className="h-4 w-4 text-teal-600 ml-2" />
+          <Calendar className="h-4 w-4 text-slate-600 ml-2" />
           <span className="text-xs font-semibold text-slate-700">Date:</span>
           <input
             type="date"
             value={date}
             min={todayLocalStr()}
             onChange={(e) => changeDate(e.target.value)}
-            className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 focus:border-teal-500 focus:outline-none"
+            className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 focus:border-slate-500 focus:outline-none"
           />
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function ParkingFloor() {
                 key={space.id}
                 className={`group relative flex flex-col justify-between rounded-2xl border p-5 transition-all duration-200 ${
                   isAvail
-                    ? "border-slate-200/80 bg-white shadow-2xs hover:-translate-y-1 hover:border-teal-400 hover:shadow-md"
+                    ? "border-slate-200/80 bg-white shadow-2xs hover:-translate-y-1 hover:border-slate-400 hover:shadow-md"
                     : "border-slate-200/60 bg-slate-50/70 opacity-75"
                 }`}
               >
@@ -111,7 +111,7 @@ export default function ParkingFloor() {
                     <div className="flex items-center gap-3">
                       <div
                         className={`flex h-11 w-11 items-center justify-center rounded-2xl text-sm font-bold text-white shadow-2xs ${
-                          isAvail ? "bg-teal-600" : "bg-slate-400"
+                          isAvail ? "bg-slate-600" : "bg-slate-400"
                         }`}
                       >
                         <CarFront className="h-5 w-5" />

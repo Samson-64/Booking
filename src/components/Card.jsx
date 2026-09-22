@@ -12,7 +12,7 @@ function Card({
     <div
       onClick={onClick}
       className={`rounded-2xl border-none bg-white shadow-2xs transition-all ${
-        onClick ? "cursor-pointer hover:border-teal-300 hover:shadow-md" : ""
+        onClick ? "cursor-pointer hover:border-slate-300 hover:shadow-md" : ""
       } ${className}`}
     >
       {title && (

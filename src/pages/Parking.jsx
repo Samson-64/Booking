@@ -74,10 +74,10 @@ export default function Parking() {
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-slate-900 transition-colors group-hover:bg-slate-900 group-hover:text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-900 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                     <CarFront className="h-6 w-6" />
                   </div>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors group-hover:bg-teal-50 group-hover:text-teal-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors group-hover:bg-slate-50 group-hover:text-slate-600">
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function Parking() {
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                     Level {idx + 1}
                   </span>
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-teal-700 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-slate-700 transition-colors">
                     {f.floor}
                   </h3>
                   <p className="mt-1 text-xs text-slate-500">

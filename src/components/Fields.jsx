@@ -1,5 +1,5 @@
 const inputStyles =
-  "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-teal-500 focus:outline-none focus:ring-3 focus:ring-teal-500/15 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed shadow-2xs";
+  "w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-slate-500 focus:outline-none focus:ring-3 focus:ring-slate-500/15 disabled:bg-slate-50 disabled:text-slate-400 disabled:cursor-not-allowed shadow-2xs";
 
 export function Input({
   label,

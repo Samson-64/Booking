@@ -160,7 +160,7 @@ export default function Dashboard() {
             <span className="text-[10px] font-medium uppercase tracking-wider text-slate-300 truncate">
               Today's
             </span>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-white/10 text-teal-300">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-white/10 text-slate-300">
               <Calendar className="h-3.5 w-3.5" />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Dashboard() {
             <span className="text-2xl font-bold tracking-tight">
               {todayBookings.length}
             </span>
-            <span className="text-[10px] text-teal-200">
+            <span className="text-[10px] text-slate-200">
               {todayBookings.length === 1 ? "slot" : "slots"}
             </span>
           </div>
@@ -176,7 +176,7 @@ export default function Dashboard() {
             <span>{upcoming.length} upcoming</span>
             <Link
               to="/my-bookings"
-              className="font-semibold text-teal-300 hover:text-teal-200 flex items-center gap-0.5"
+              className="font-semibold text-slate-300 hover:text-slate-200 flex items-center gap-0.5"
             >
               View <ChevronRight className="h-2.5 w-2.5" />
             </Link>
@@ -218,7 +218,7 @@ export default function Dashboard() {
             <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Parking
             </span>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-600">
               <CarFront className="h-3.5 w-3.5" />
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function Dashboard() {
             <span className="text-2xl font-bold tracking-tight text-slate-900">
               {upcomingParking}
             </span>
-            <span className="text-[10px] font-medium text-teal-600">
+            <span className="text-[10px] font-medium text-slate-600">
               Reserved
             </span>
           </div>
@@ -234,7 +234,7 @@ export default function Dashboard() {
             <span className="text-slate-400">Multi-floor</span>
             <Link
               to="/parking"
-              className="font-semibold text-teal-600 hover:text-teal-700"
+              className="font-semibold text-slate-600 hover:text-slate-700"
             >
               Browse →
             </Link>
@@ -372,7 +372,7 @@ export default function Dashboard() {
                           {initial}
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors leading-tight">
+                          <h4 className="text-sm font-bold text-slate-900 group-hover:text-slate-700 transition-colors leading-tight">
                             {titleName}
                           </h4>
                           <p className="text-[11px] text-slate-500 leading-tight">
@@ -386,12 +386,12 @@ export default function Dashboard() {
                     {/* Time Slot & Date Badge */}
                     <div className="mt-3 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-700 border border-slate-100">
                       <div className="flex items-center gap-1.5 font-medium">
-                        <Clock className="h-3.5 w-3.5 text-teal-600" />
+                        <Clock className="h-3.5 w-3.5 text-slate-600" />
                         <span>
                           {b.startTime} – {b.endTime}
                         </span>
                       </div>
-                      <Badge color={isAppt ? "indigo" : "teal"} size="sm">
+                      <Badge color={isAppt ? "indigo" : "slate"} size="sm">
                         {formatShortDate(b.date)}
                       </Badge>
                     </div>
