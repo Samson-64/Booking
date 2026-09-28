@@ -1,5 +1,11 @@
-import { createContext, useContext, useMemo, useState } from "react";
-import { api, apiErrorMessage, clearAuth, getRefreshToken } from "../api/client";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  api,
+  apiErrorMessage,
+  clearAuth,
+  getRefreshToken,
+  onAuthCleared,
+} from "../api/client";
 
 const AuthContext = createContext(null);
 
@@ -39,6 +45,23 @@ function toPublicUser({ id, name, email, role, person_id }) {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(readSession);
+
+  // The API client clears storage on logout or on a 401 it cannot recover from.
+  // Mirror that into React state so ProtectedRoute redirects to /login.
+  useEffect(() => onAuthCleared(() => setUser(null)), []);
+
+  // Sessions no longer expire, so they stay signed in until the user logs out.
+  // That makes cross-tab sync matter: a logout in one tab must end the session
+  // in every other tab, which the `storage` event reports across documents.
+  useEffect(() => {
+    function handleStorage(event) {
+      if (event.key === AUTH_KEY && event.newValue === null) {
+        setUser(null);
+      }
+    }
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
 
   const value = useMemo(() => {
     async function login(email, password) {
