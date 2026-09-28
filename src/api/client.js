@@ -109,6 +109,15 @@ api.interceptors.response.use(
 );
 
 // Clear the locally-stored session (used on logout / unauthorized responses).
+// Listeners are notified so React state can be torn down too; without that the
+// router would still see a cached user and never redirect to /login.
+const authClearedListeners = new Set();
+
+export function onAuthCleared(listener) {
+  authClearedListeners.add(listener);
+  return () => authClearedListeners.delete(listener);
+}
+
 export function clearAuth() {
   try {
     localStorage.removeItem(AUTH_KEY);
@@ -116,6 +125,13 @@ export function clearAuth() {
   } catch {
     // best-effort write; ignore failures
   }
+  authClearedListeners.forEach((listener) => {
+    try {
+      listener();
+    } catch {
+      // a broken listener must not block the others
+    }
+  });
 }
 
 // Normalize any thrown/errored value into a human-readable message.
