@@ -108,7 +108,28 @@ export function AuthProvider({ children }) {
       setUser(null);
     }
 
-    return { user, login, register, registerSpecialist, logout };
+    // Re-read the user from the API and persist it, so a profile edit in
+    // Settings is reflected in the sidebar and survives a reload.
+    async function refreshUser() {
+      const { data } = await api.get("/auth/me");
+      const next = toPublicUser(data);
+      try {
+        const raw = localStorage.getItem(AUTH_KEY);
+        const session = raw ? JSON.parse(raw) : null;
+        if (session) {
+          localStorage.setItem(
+            AUTH_KEY,
+            JSON.stringify({ token: session.token, user: next }),
+          );
+        }
+      } catch {
+        // best-effort write; ignore failures
+      }
+      setUser(next);
+      return next;
+    }
+
+    return { user, login, register, registerSpecialist, logout, refreshUser };
   }, [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
