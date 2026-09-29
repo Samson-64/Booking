@@ -12,11 +12,8 @@ import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { Select } from "../components/Fields";
 import Badge from "../components/Badge";
-import {
-  formatShortDate,
-  formatLongDate,
-  todayLocalStr,
-} from "../utils/format";
+import { formatShortDate, formatLongDate, todayLocalStr } from "../utils/format";
+import { useSettings } from "../context/SettingsContext";
 import { Clock, AlertCircle, ShieldCheck, Check } from "lucide-react";
 
 const DAYS_AHEAD = 14;
@@ -63,6 +60,10 @@ export default function Appointments() {
   const [selectedDate, setSelectedDate] = useState("");
   const [availability, setAvailability] = useState(null);
   const [availabilityError, setAvailabilityError] = useState("");
+
+  // Saved booking default, used to pre-select the end time.
+  const { settings } = useSettings();
+  const defaultDurationMinutes = settings?.defaultDurationMinutes ?? 30;
 
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -165,6 +166,21 @@ export default function Appointments() {
       return m > min && m <= scheduleEnd;
     });
   }, [availability, startTime]);
+
+  // Picking a start also pre-selects the end, so the user's saved default
+  // duration applies without them touching a second dropdown. Durations that
+  // fall off the 30-minute grid snap up to the next selectable slot, and a
+  // default that overruns the working day leaves the end unset.
+  function selectStart(value) {
+    setStartTime(value);
+    if (!value || !availability?.working) {
+      setEndTime("");
+      return;
+    }
+    const desired = timeToMinutes(value) + defaultDurationMinutes;
+    const candidate = endTimeOptions.find((t) => timeToMinutes(t) >= desired);
+    setEndTime(candidate ?? "");
+  }
 
   async function handleConfirm() {
     if (!canConfirm) return;
@@ -384,7 +400,7 @@ export default function Appointments() {
                     id="start-time"
                     label="Start Time"
                     value={startTime}
-                    onChange={(e) => setStartTime(e.target.value)}
+                    onChange={(e) => selectStart(e.target.value)}
                   >
                     <option value="">Choose start…</option>
                     {TIME_OPTIONS.filter((t) => {
