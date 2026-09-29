@@ -69,7 +69,7 @@ function MainLayout() {
   });
 
   return (
-    <div className="flex min-h-screen bg-[#F8FAFC]">
+    <div className="flex min-h-screen bg-brand-50">
       {/* ================= DESKTOP SIDEBAR ================= */}
       <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex rounded-3xl border-10 border-white overflow-hidden">
         <div>
