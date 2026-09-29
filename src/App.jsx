@@ -1,5 +1,7 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { useAuth } from "./auth/AuthContext";
+import { SettingsProvider } from "./context/SettingsContext";
+import { NotificationsProvider } from "./context/NotificationsContext";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -10,15 +12,27 @@ import ParkingBooking from "./pages/ParkingBooking";
 import MyBookings from "./pages/MyBookings";
 import StaffAppointments from "./pages/StaffAppointments";
 import SpecialistDashboard from "./pages/SpecialistDashboard";
+import Settings from "./pages/Settings";
+import Notifications from "./pages/Notifications";
 
 // Redirect to /login (remembering where the user was headed) if signed out.
+//
+// The settings and notification providers live here rather than in main.jsx so
+// that they mount only for a signed-in user: they hit authenticated endpoints,
+// and mounting them above this point would fire requests that can only 401.
 function ProtectedRoute() {
   const { user } = useAuth();
   const location = useLocation();
   if (!user) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
-  return <Outlet />;
+  return (
+    <SettingsProvider>
+      <NotificationsProvider>
+        <Outlet />
+      </NotificationsProvider>
+    </SettingsProvider>
+  );
 }
 
 // Route-index helper: everyone sees the dashboard, but specialists get their
@@ -46,6 +60,8 @@ export default function App() {
           <Route path="/parking/book/:id" element={<ParkingBooking />} />
           <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/staff/appointments" element={<StaffAppointments />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
 
