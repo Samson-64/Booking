@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import NotificationBell from "../components/NotificationBell";
 import {
   LayoutDashboard,
   CalendarDays,
@@ -11,7 +12,6 @@ import {
   User,
   Settings,
   LogOut,
-  Bell,
   Search,
   Menu,
   X,
@@ -23,7 +23,6 @@ function MainLayout() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const isStaff = user?.role === "STAFF";
   const isSpecialist = user?.role === "SPECIALIST";
@@ -183,45 +182,14 @@ function MainLayout() {
           )}
 
           <button
-            onClick={() => navigate("/my-bookings")}
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors"
+            onClick={() => navigate("/settings")}
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors cursor-pointer"
           >
             <Settings className="h-4 w-4" />
             <span>Preferences</span>
           </button>
 
-          {/* Notification Bell */}
-          <div className="relative">
-            <button
-              onClick={() => setNotificationsOpen(!notificationsOpen)}
-              className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-colors cursor-pointer"
-            >
-              <Bell className="h-4 w-4" />
-              <span>Notifications</span>
-              <span className="ml-auto h-2 w-2 rounded-full bg-slate-400" />
-            </button>
-
-            {notificationsOpen && (
-              <div className="absolute bottom-full left-0 mb-2 w-72 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl z-50 animate-in fade-in slide-in-from-bottom-2">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2 px-1">
-                  <span className="text-xs font-semibold text-slate-800">
-                    Notifications
-                  </span>
-                  <span className="text-[10px] text-slate-600 font-medium">
-                    All caught up
-                  </span>
-                </div>
-                <div className="py-3 px-1 text-xs text-slate-500 space-y-2">
-                  <div className="rounded-lg bg-slate-50/60 p-2 border border-slate-100/60">
-                    <p className="font-semibold text-slate-900">System Ready</p>
-                    <p className="text-[11px] text-slate-700 mt-0.5">
-                      Real-time appointment and parking sync active.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <NotificationBell />
 
           <button
             onClick={handleLogout}
@@ -369,14 +337,19 @@ function MainLayout() {
           </div>
 
           <div className="border-t border-slate-800 pt-4 space-y-1">
+            <NotificationBell />
+
             <button
-              onClick={() => setNotificationsOpen(!notificationsOpen)}
-              className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-100 transition-colors"
+              onClick={() => {
+                setMobileOpen(false);
+                navigate("/settings");
+              }}
+              className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-100 cursor-pointer"
             >
-              <Bell className="h-4 w-4" />
-              <span>Notifications</span>
-              <span className="ml-auto h-2 w-2 rounded-full bg-slate-400" />
+              <Settings className="h-4 w-4" />
+              <span>Preferences</span>
             </button>
+
             <button
               onClick={handleLogout}
               className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-rose-400 hover:bg-rose-950/40"
