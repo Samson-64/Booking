@@ -444,7 +444,7 @@ export default function Appointments() {
 
         {/* Right Sticky Summary & Confirmation Box (1 Column) */}
         <div className="space-y-4">
-          <div className="sticky top-28 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs space-y-5">
+          <div className="sticky top-4 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs space-y-5">
             <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3">
               Booking Summary
             </h3>

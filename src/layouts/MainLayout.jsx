@@ -69,9 +69,9 @@ function MainLayout() {
   });
 
   return (
-    <div className="flex min-h-screen bg-brand-50">
+    <div className="flex h-dvh bg-brand-50">
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <aside className="hidden w-64 shrink-0 flex-col justify-between bg-navy-900 text-slate-300 lg:flex rounded-3xl border-10 border-white overflow-hidden">
+      <aside className="hidden w-64 shrink-0 flex-col justify-between overflow-y-auto overflow-x-hidden bg-navy-900 text-slate-300 lg:flex rounded-3xl border-10 border-white">
         <div>
           {/* Logo & Brand Header */}
           <div className="flex h-20 items-center justify-between px-6 border-b  border-slate-800/80">
@@ -204,7 +204,7 @@ function MainLayout() {
       {/* ================= MAIN CONTENT WRAPPER ================= */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* TOP APP BAR */}
-        <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-slate-200/80 bg-white/90 backdrop-blur-md px-4 sm:px-8">
+        <header className="z-30 flex h-20 shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/90 backdrop-blur-md px-4 sm:px-8">
           {/* Mobile menu toggle & brand */}
           <div className="flex items-center gap-3 lg:hidden">
             <button
