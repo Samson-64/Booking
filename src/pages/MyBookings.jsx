@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { fetchMyBookings } from "../api/booking";
 import { apiErrorMessage } from "../api/client";
-import Spinner from "../components/Spinner";
+import Skeleton from "../components/Skeleton";
 import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { StatusBadge } from "../components/StatusBadge";
@@ -67,7 +67,7 @@ export default function MyBookings() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               My Bookings & Reservations
             </h1>
           </div>
@@ -150,7 +150,22 @@ export default function MyBookings() {
       {error ? (
         <ErrorState message={error} onRetry={() => window.location.reload()} />
       ) : bookings === null ? (
-        <Spinner label="Loading your reservations…" />
+        <div className="grid grid-cols-1 gap-4">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-2xs"
+            >
+              <Skeleton className="h-12 w-12 shrink-0 rounded-2xl" />
+              <div className="flex-1">
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="mt-2 h-3 w-56" />
+                <Skeleton className="mt-2 h-3 w-32" />
+              </div>
+              <Skeleton className="h-6 w-20 rounded-full" />
+            </div>
+          ))}
+        </div>
       ) : filtered.length === 0 ? (
         <EmptyState
           title={`No ${tab.toLowerCase()} reservations`}
@@ -169,7 +184,7 @@ export default function MyBookings() {
                   {/* Avatar Icon */}
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-2xs ${
-                      isAppt ? "bg-slate-600" : "bg-indigo-600"
+                      isAppt ? "bg-slate-600" : "bg-accent-600"
                     }`}
                   >
                     {isAppt ? (

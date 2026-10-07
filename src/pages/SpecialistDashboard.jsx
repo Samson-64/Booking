@@ -106,10 +106,10 @@ export default function SpecialistDashboard() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               Provider Dashboard
             </h1>
-            <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 border border-indigo-200">
+            <span className="rounded-full bg-accent-50 px-2.5 py-0.5 text-xs font-semibold text-accent-700 border border-accent-200">
               Provider
             </span>
           </div>
@@ -151,7 +151,7 @@ export default function SpecialistDashboard() {
                 <ClipboardList className="h-4 w-4" />
               </div>
             </div>
-            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900">
+            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900 tabular-nums">
               {pendingCount}
             </div>
           </div>
@@ -166,7 +166,7 @@ export default function SpecialistDashboard() {
                 <CalendarDays className="h-4 w-4" />
               </div>
             </div>
-            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900">
+            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900 tabular-nums">
               {upcomingCount}
             </div>
           </div>
@@ -177,11 +177,11 @@ export default function SpecialistDashboard() {
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Total Assigned
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
                 <Users className="h-4 w-4" />
               </div>
             </div>
-            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900">
+            <div className="mt-3 text-3xl font-bold tracking-tight text-slate-900 tabular-nums">
               {counts.ALL || 0}
             </div>
           </div>

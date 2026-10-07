@@ -14,6 +14,7 @@ import StaffAppointments from "./pages/StaffAppointments";
 import SpecialistDashboard from "./pages/SpecialistDashboard";
 import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
+import NotFound from "./pages/NotFound";
 
 // Redirect to /login (remembering where the user was headed) if signed out.
 //
@@ -65,7 +66,7 @@ export default function App() {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

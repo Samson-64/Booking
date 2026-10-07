@@ -161,7 +161,7 @@ export default function ParkingBooking() {
             <CarFront className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               {spacesLoading
                 ? "Loading space…"
                 : space
@@ -181,14 +181,14 @@ export default function ParkingBooking() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {/* Main form (2 cols) */}
         <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs md:col-span-2 space-y-5">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3">
-            Schedule Time Window
+          <h2 className="text-sm font-semibold text-slate-900 border-b border-slate-100 pb-3">
+            Schedule time window
           </h2>
 
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700">
-                Reservation Date
+              <label className="block text-xs font-medium text-slate-600">
+                Reservation date
               </label>
               <input
                 type="date"
@@ -257,7 +257,7 @@ export default function ParkingBooking() {
         {/* Summary side box (1 col) */}
         <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs flex flex-col justify-between space-y-6">
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3">
+            <h3 className="text-sm font-semibold text-slate-900 border-b border-slate-100 pb-3">
               Summary
             </h3>
             <div className="space-y-3 text-xs">
@@ -319,12 +319,12 @@ function Confirmation({ booking, spaceName, floor, onReset }) {
     <div className="animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Header */}
-        <div className="bg-slate-600 p-8 text-center text-white">
+        <div className="bg-accent-800 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>
-          <h2 className="text-xl font-bold tracking-tight">
-            Parking Space Reserved!
+          <h2 className="text-xl font-semibold tracking-tight">
+            Parking space reserved
           </h2>
           <p className="mt-1 text-xs text-slate-100">
             Booking Pass:{" "}

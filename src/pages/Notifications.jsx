@@ -12,7 +12,7 @@ import Spinner from "../components/Spinner";
 const CATEGORY = {
   BOOKING_STATUS: {
     icon: CalendarClock,
-    className: "text-indigo-600 bg-indigo-50",
+    className: "text-accent-600 bg-accent-50",
     label: "Booking update",
   },
   NEW_BOOKING: {
@@ -50,7 +50,7 @@ export default function Notifications() {
     <div className="mx-auto max-w-3xl space-y-5 animate-in fade-in duration-200">
       <header className="flex flex-wrap items-start justify-between gap-3 border-b border-slate-200/80 pb-5">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
             Notifications
           </h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -159,7 +159,7 @@ export default function Notifications() {
                       {item.title}
                     </span>
                     {!item.read && (
-                      <span className="rounded-full bg-indigo-50 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-indigo-700">
+                      <span className="rounded-full bg-accent-50 px-1.5 py-0.5 text-[9px] font-semibold text-accent-700">
                         New
                       </span>
                     )}
@@ -171,14 +171,14 @@ export default function Notifications() {
                     {item.body}
                   </p>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
-                    <span className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
+                    <span className="text-[10px] font-medium text-slate-400">
                       {style.label}
                     </span>
                     {!item.read && (
                       <button
                         type="button"
                         onClick={() => markRead(item.id)}
-                        className="text-[11px] font-semibold text-indigo-600 hover:text-indigo-700 cursor-pointer"
+                        className="text-[11px] font-semibold text-accent-600 hover:text-accent-700 cursor-pointer"
                       >
                         Mark as read
                       </button>

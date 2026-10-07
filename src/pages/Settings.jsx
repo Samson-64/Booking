@@ -201,7 +201,7 @@ export default function Settings() {
   return (
     <div className="mx-auto max-w-3xl space-y-6 animate-in fade-in duration-200">
       <header className="border-b border-slate-200/80 pb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Settings</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Settings</h1>
         <p className="mt-1 text-sm text-slate-500">
           Manage your account, booking defaults and notification preferences.
         </p>

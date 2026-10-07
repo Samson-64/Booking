@@ -15,7 +15,6 @@ import {
   Search,
   Menu,
   X,
-  // Sparkles,
 } from "lucide-react";
 
 function MainLayout() {
@@ -70,37 +69,44 @@ function MainLayout() {
 
   return (
     <div className="flex h-dvh bg-brand-50">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-lg focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-md"
+      >
+        Skip to content
+      </a>
+
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <aside className="hidden w-64 shrink-0 flex-col justify-between overflow-y-auto overflow-x-hidden bg-navy-900 text-slate-300 lg:flex rounded-3xl border-10 border-white">
+      <aside className="hidden w-64 shrink-0 flex-col justify-between overflow-y-auto overflow-x-hidden bg-navy-900 text-slate-300 lg:flex">
         <div>
           {/* Logo & Brand Header */}
           <div className="flex h-20 items-center justify-between px-6 border-b  border-slate-800/80">
             <div className="flex items-center gap-3">
               <div>
-                <span className="text-xl font-bold tracking-tight text-white">
-                  Booking Portal
+                <span className="text-xl font-semibold tracking-tight text-white">
+                  PulseBook
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center ml-7 mt-5">
-            <div className="relative w-72 lg:w-40 ">
-              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <div className="px-4 mt-4">
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
               <input
                 type="text"
                 placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-white py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-slate-500/5"
+                className="w-full rounded-lg border border-slate-700/70 bg-slate-800/70 py-2 pl-10 pr-8 text-xs text-slate-200 placeholder-slate-500 shadow-2xs transition-all focus:border-slate-500 focus:bg-slate-800 focus:outline-none focus:ring-3 focus:ring-slate-500/15"
               />
             </div>
           </div>
 
           {/* Navigation Links */}
           <div className="px-3 py-6">
-            <div className="mb-2 px-3 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
-              Main Menu
+            <div className="mb-2 px-3 text-[11px] font-medium tracking-wide text-slate-400">
+              Main menu
             </div>
             <nav className="space-y-1.5">
               {navItems.map((item) => {
@@ -161,7 +167,7 @@ function MainLayout() {
                   isStaff
                     ? "bg-amber-400 animate-pulse"
                     : isSpecialist
-                      ? "bg-indigo-400"
+                      ? "bg-accent-400"
                       : "bg-slate-400"
                 }`}
               />
@@ -215,46 +221,36 @@ function MainLayout() {
               <Menu className="h-5 w-5" />
             </button>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-slate-900">
-                Booking Portal
+              <span className="text-sm font-semibold text-slate-900">
+                PulseBook
               </span>
             </div>
           </div>
 
-          {/* Search bar with shortcut tag */}
-          {/* <div className="hidden md:flex items-center">
-            <div className="relative w-72 lg:w-96">
-              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search appointments, slots, providers..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-slate-200 py-2 pl-10 pr-12 text-xs text-slate-800 placeholder-slate-400 transition-all focus:bg-white focus:outline-none focus:ring-3 focus:ring-slate-500/5"
-              />
-            </div>
-          </div> */}
-
           {/* Right Header Controls */}
-          <div className="flex items-center gap-3 sm:gap-4 ml-[80.5%]">
+          <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             {/* date display */}
             <div className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-3.5 py-1.5 text-xs font-medium text-slate-600">
-              <CalendarDays className="h-3.5 w-3.5 text-sleat-900" />
+              <CalendarDays className="h-3.5 w-3.5 text-slate-500" />
               <span>{todayFormatted}</span>
             </div>
 
-            {/* User Avatar (no dropdown) */}
+            {/* User Avatar */}
             <button
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 text-xs font-bold text-white shadow-2xs cursor-pointer"
+              className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-200 text-xs font-semibold text-slate-900 shadow-2xs cursor-pointer transition-colors hover:bg-slate-300 hover:text-slate-950"
               aria-label="Account"
             >
-              <User className="text-slate-900" />
+              <User className="h-4 w-4" />
             </button>
           </div>
         </header>
 
         {/* MAIN BODY AREA */}
-        <main className="flex-1 overflow-y-auto px-4 py-6 sm:px-8 sm:py-8">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex-1 overflow-y-auto px-4 py-6 sm:px-8 sm:py-8 focus:outline-none"
+        >
           <div className="mx-auto max-w-7xl">
             <Outlet context={{ searchQuery }} />
           </div>
@@ -284,8 +280,8 @@ function MainLayout() {
           <div>
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <div className="flex items-center gap-3">
-                <span className="text-base font-bold text-white">
-                  Booking Portal
+                <span className="text-base font-semibold text-white">
+                  PulseBook
                 </span>
               </div>
               <button

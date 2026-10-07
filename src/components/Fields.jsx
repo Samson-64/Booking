@@ -15,7 +15,7 @@ export function Input({
       {label && (
         <label
           htmlFor={id}
-          className="block text-xs font-semibold uppercase tracking-wider text-slate-700"
+          className="block text-xs font-medium text-slate-600"
         >
           {label}
         </label>
@@ -51,7 +51,7 @@ export function Select({ label, id, error, children, icon, ...props }) {
       {label && (
         <label
           htmlFor={id}
-          className="block text-xs font-semibold uppercase tracking-wider text-slate-700"
+          className="block text-xs font-medium text-slate-600"
         >
           {label}
         </label>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchParkingSpaces } from "../api/booking";
 import { apiErrorMessage } from "../api/client";
-import Spinner from "../components/Spinner";
+import Skeleton from "../components/Skeleton";
 import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { useSettings } from "../context/SettingsContext";
@@ -50,7 +50,7 @@ export default function Parking() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               Parking Facilities
             </h1>
           </div>
@@ -64,7 +64,22 @@ export default function Parking() {
       {error ? (
         <ErrorState message={error} onRetry={() => window.location.reload()} />
       ) : floors === null ? (
-        <Spinner label="Loading parking facilities and levels…" />
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs"
+            >
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-12 w-12 rounded-2xl" />
+                <Skeleton className="h-5 w-14 rounded-full" />
+              </div>
+              <Skeleton className="mt-5 h-3 w-16" />
+              <Skeleton className="mt-2 h-5 w-32" />
+              <Skeleton className="mt-2 h-3 w-44" />
+            </div>
+          ))}
+        </div>
       ) : floors.length === 0 ? (
         <EmptyState
           title="No parking floors available"
@@ -81,7 +96,7 @@ export default function Parking() {
                 key={f.floor}
                 onClick={() => openFloor(f.floor)}
                 className={`group relative flex flex-col justify-between rounded-2xl border bg-white p-6 text-left shadow-2xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-900 hover:shadow-md cursor-pointer ${
-                  isPreferred ? "border-indigo-300 ring-2xs ring-indigo-100" : "border-slate-200/80"
+                  isPreferred ? "border-accent-300 ring-2xs ring-accent-100" : "border-slate-200/80"
                 }`}
               >
                 <div>
@@ -91,7 +106,7 @@ export default function Parking() {
                     </div>
                     <div className="flex items-center gap-2">
                       {isPreferred && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-indigo-700">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-accent-50 px-2 py-1 text-[10px] font-semibold text-accent-700">
                           <Star className="h-3 w-3" />
                           Preferred
                         </span>

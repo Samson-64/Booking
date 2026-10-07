@@ -8,6 +8,7 @@ import {
 import { apiErrorMessage } from "../api/client";
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
+import Skeleton from "../components/Skeleton";
 import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { Select } from "../components/Fields";
@@ -219,7 +220,7 @@ export default function Appointments() {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               Book an Appointment
             </h1>
           </div>
@@ -247,7 +248,20 @@ export default function Appointments() {
             {peopleError ? (
               <ErrorState message={peopleError} />
             ) : people === null ? (
-              <Spinner label="Loading providers…" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[0, 1].map((i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-2xs"
+                  >
+                    <Skeleton className="h-10 w-10 shrink-0 rounded-xl" />
+                    <div className="flex-1">
+                      <Skeleton className="h-3.5 w-28" />
+                      <Skeleton className="mt-2 h-3 w-20" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : people.length === 0 ? (
               <EmptyState title="No providers available" />
             ) : (
@@ -335,7 +349,7 @@ export default function Appointments() {
                           ? "bg-slate-900 text-white shadow-md ring-2 ring-slate-500/40"
                           : isPast
                             ? "cursor-not-allowed bg-slate-50 text-slate-300 border border-slate-100"
-                            : "border border-slate-200 bg-white text-slate-700  hover:bg-gray-100"
+                            : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
                       }`}
                     >
                       <span className="text-[11px] font-medium uppercase tracking-wider opacity-80">
@@ -445,8 +459,8 @@ export default function Appointments() {
         {/* Right Sticky Summary & Confirmation Box (1 Column) */}
         <div className="space-y-4">
           <div className="sticky top-4 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-2xs space-y-5">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3">
-              Booking Summary
+            <h3 className="text-sm font-semibold text-slate-900 border-b border-slate-100 pb-3">
+              Booking summary
             </h3>
 
             <div className="space-y-3.5 text-xs">
@@ -477,7 +491,7 @@ export default function Appointments() {
                 <span className="text-slate-400 block text-[10px] uppercase font-semibold">
                   Time Slot
                 </span>
-                <span className="font-bold text-slate-800 text-sm">
+                <span className="font-bold text-slate-800 text-sm tabular-nums">
                   {startTime && endTime ? `${startTime} – ${endTime}` : "—"}
                 </span>
               </div>
@@ -513,12 +527,12 @@ function Confirmation({ success, onReset }) {
     <div className="mx-auto max-w-lg animate-in zoom-in-95 duration-200 py-6">
       <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl">
         {/* Top Header Banner */}
-        <div className="bg-slate-600 p-8 text-center text-white">
+        <div className="bg-accent-800 p-8 text-center text-white">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md text-white shadow-lg mb-4">
             <ShieldCheck className="h-8 w-8" />
           </div>
-          <h2 className="text-xl font-bold tracking-tight">
-            Appointment Booked Successfully!
+          <h2 className="text-xl font-semibold tracking-tight">
+            Appointment booked
           </h2>
           <p className="mt-1 text-xs text-slate-100">
             Reference token:{" "}

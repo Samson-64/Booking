@@ -57,7 +57,7 @@ export default function ParkingFloor() {
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Floors
           </button>
           <div className="flex items-center gap-2.5">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
               {floor}
             </h1>
             <span className="rounded-full bg-slate-50 px-2.5 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">

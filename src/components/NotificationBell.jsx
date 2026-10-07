@@ -6,7 +6,7 @@ import { formatRelative } from "../utils/relativeTime";
 
 // Per-category icon + tint, so the list is scannable.
 const CATEGORY_STYLE = {
-  BOOKING_STATUS: { icon: CalendarClock, className: "text-indigo-600 bg-indigo-50" },
+  BOOKING_STATUS: { icon: CalendarClock, className: "text-accent-600 bg-accent-50" },
   NEW_BOOKING: { icon: Sparkles, className: "text-emerald-600 bg-emerald-50" },
   REMINDER: { icon: Bell, className: "text-amber-600 bg-amber-50" },
   SYSTEM: { icon: Info, className: "text-slate-600 bg-slate-100" },
@@ -67,7 +67,7 @@ export default function NotificationBell({ className = "" }) {
         <span className="relative">
           <Bell className="h-4 w-4" />
           {unreadCount > 0 && (
-            <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-indigo-600 px-1 text-[9px] font-bold text-white">
+            <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent-600 px-1 text-[9px] font-bold text-white">
               {unreadCount > 99 ? "99+" : unreadCount}
             </span>
           )}
@@ -83,7 +83,7 @@ export default function NotificationBell({ className = "" }) {
               <button
                 type="button"
                 onClick={markAllRead}
-                className="flex items-center gap-1 text-[10px] font-semibold text-indigo-600 hover:text-indigo-700 cursor-pointer"
+                className="flex items-center gap-1 text-[10px] font-semibold text-accent-600 hover:text-accent-700 cursor-pointer"
               >
                 <CheckCheck className="h-3 w-3" />
                 Mark all read
@@ -126,7 +126,7 @@ export default function NotificationBell({ className = "" }) {
                       }
                     }}
                     className={`flex w-full items-start gap-3 border-b border-slate-50 px-4 py-3 text-left transition-colors last:border-b-0 hover:bg-slate-50 cursor-pointer ${
-                      item.read ? "opacity-60" : "bg-indigo-50/30"
+                      item.read ? "opacity-60" : "bg-accent-50/30"
                     }`}
                   >
                     <span
@@ -171,7 +171,7 @@ export function UnreadPill({ count, onClear, className = "" }) {
   if (!count) return null;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-2.5 py-1 text-[10px] font-bold text-indigo-700 ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-full bg-accent-50 px-2.5 py-1 text-[10px] font-bold text-accent-700 ${className}`}
     >
       {count} unread
       {onClear && (
@@ -179,7 +179,7 @@ export function UnreadPill({ count, onClear, className = "" }) {
           type="button"
           onClick={onClear}
           aria-label="Mark all as read"
-          className="rounded-full p-0.5 hover:bg-indigo-100 cursor-pointer"
+          className="rounded-full p-0.5 hover:bg-accent-100 cursor-pointer"
         >
           <X className="h-3 w-3" />
         </button>

@@ -19,7 +19,7 @@ export default function Toggle({ checked, onChange, label, description, disabled
         disabled={disabled}
         onClick={() => onChange(!checked)}
         className={`relative mt-0.5 h-6 w-11 shrink-0 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
-          checked ? "bg-indigo-600" : "bg-slate-300"
+          checked ? "bg-accent-600" : "bg-slate-300"
         }`}
       >
         <span

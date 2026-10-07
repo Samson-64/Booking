@@ -6,7 +6,7 @@ const colorStyles = {
   blue: "bg-sky-50 text-sky-700 border-sky-200/80",
   slate: "bg-slate-50 text-slate-700 border-slate-200/80",
   purple: "bg-purple-50 text-purple-700 border-purple-200/80",
-  indigo: "bg-indigo-50 text-indigo-700 border-indigo-200/80",
+  accent: "bg-accent-50 text-accent-700 border-accent-200/80",
 };
 
 const dotColors = {
@@ -17,7 +17,7 @@ const dotColors = {
   blue: "bg-sky-500",
   slate: "bg-slate-500",
   purple: "bg-purple-500",
-  indigo: "bg-indigo-500",
+  accent: "bg-accent-500",
 };
 
 function Badge({

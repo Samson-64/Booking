@@ -47,6 +47,11 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     setLoading(true);
     try {
       if (mode === "login") await login(email, password);
@@ -62,28 +67,45 @@ export default function Login() {
   }
 
   const inputClass =
-    "w-full border-0 border-b border-slate-300 bg-transparent px-0 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-800 focus:ring-0";
+    "w-full border-0 border-b border-slate-300 bg-transparent px-0 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-accent-700 focus:ring-0";
   const switchMode = (nextMode) => {
     setMode(nextMode);
     setError("");
   };
 
+  function validate() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (mode === "register" && name.trim().length < 2) {
+      return "Please enter your full name.";
+    }
+    if (mode === "register" && accountType === "specialist" && !position.trim()) {
+      return "Please enter your position or specification.";
+    }
+    if (!emailRegex.test(email.trim())) {
+      return "Enter a valid email address.";
+    }
+    if (password.length < 8) {
+      return "Password must be at least 8 characters.";
+    }
+    return "";
+  }
+
   return (
-    <main className="min-h-screen bg-[#dce9f5] p-3 selection:bg-blue-200 selection:text-blue-950 sm:p-6 lg:p-8">
-      <div className="mx-auto grid min-h-[calc(100vh-1.5rem)] max-w-6xl overflow-hidden rounded-[1.8rem] border-14 border-[#071827] bg-[#eef5fc] shadow-2xl shadow-slate-950/30 sm:min-h-[calc(100vh-3rem)] lg:grid-cols-[1fr_1.18fr] lg:rounded-4xl">
-        <section className="relative z-10 flex items-center justify-center bg-[#eef5fc] px-6 py-12 sm:px-12 lg:px-14 lg:py-16">
+    <main className="flex min-h-dvh items-center justify-center bg-accent-100 p-3 selection:bg-accent-200 selection:text-accent-950 sm:p-6 lg:p-8">
+      <div className="grid w-full max-w-6xl grid-cols-1 overflow-hidden rounded-3xl bg-accent-50 shadow-xl shadow-accent-900/10 lg:grid-cols-[1fr_1.18fr]">
+        <section className="relative z-10 flex items-center justify-center bg-accent-50 px-6 py-12 sm:px-12 lg:px-14 lg:py-16">
           <div className="w-full max-w-md">
-            <div className="mb-10 flex items-center gap-2.5 text-2xl font-bold tracking-tight text-[#102c67]">
-              Booking Portal
+            <div className="mb-10 flex items-center gap-2.5 text-2xl font-semibold tracking-tight text-accent-700">
+              PulseBook
             </div>
             <div className="mb-8">
-              <h1 className="text-3xl font-bold tracking-tight text-[#102c67] sm:text-[2.1rem]">
+              <h1 className="text-3xl font-semibold tracking-tight text-accent-700 sm:text-[2.1rem]">
                 {mode === "login" ? "Welcome Back" : "Create your account"}
               </h1>
               <p className="mt-2 text-sm leading-6 text-slate-500">
                 {mode === "login"
                   ? "Sign in to continue to your workspace."
-                  : "Start organising your work in just a few moment."}
+                  : "Start organizing your work in just a few moments."}
               </p>
             </div>
             <div
@@ -173,14 +195,15 @@ export default function Login() {
                   className={inputClass}
                 />
               </Field>
-              <Field label="password">
+              <Field label="Password">
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your Password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  minLength={8}
                   autoComplete={
                     mode === "login" ? "current-password" : "new-password"
                   }
@@ -211,24 +234,24 @@ export default function Login() {
                 type="submit"
                 loading={loading}
                 variant="primary"
-                className="mt-4 w-full justify-center rounded-md bg-slate-900 py-3.5 text-sm shadow-lg shadow-slate-950/15 hover:bg-slate-800"
+                className="mt-4 w-full justify-center rounded-lg py-3.5 text-sm shadow-lg shadow-accent-900/15 hover:bg-accent-800"
               >
                 {mode === "login"
                   ? "Sign In"
                   : accountType === "specialist"
-                    ? "Create provider Account"
+                    ? "Create provider account"
                     : "Create account"}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </form>
             <p className="mt-7 text-center text-xs leading-5 text-slate-400">
-              By continuuing, you agree to use the portal responsibly
+              By continuing, you agree to use the portal responsibly
             </p>
           </div>
         </section>
         <section
           aria-label="Showcase"
-          className="relative hidden min-h-130 overflow-hidden bg-[#062b5e] lg:block"
+          className="relative hidden min-h-130 overflow-hidden bg-accent-800 lg:block"
         >
           {carouselSlides.map((slide, i) => (
             <div
@@ -240,12 +263,12 @@ export default function Login() {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url('${slide.image}')` }}
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,#062b5e_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-accent-800)_0%,rgba(6,43,94,.72)_13%,rgba(6,43,94,.18)_42%,rgba(4,25,55,.35)_100%)]" />
             </div>
           ))}
-          <div className="absolute inset-y-0 -left-20 w-44 -skew-x-8 bg-[#eef5fc]" />
+          <div className="absolute inset-y-0 -left-20 w-44 -skew-x-8 bg-accent-50" />
           <div className="absolute bottom-12 left-16 max-w-xs text-white">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[.22em] text-cyan-200">
+            <p className="mb-3 text-xs font-medium tracking-wide text-cyan-100">
               Your space, your reservations
             </p>
             <p className="text-2xl font-semibold leading-tight">
@@ -273,18 +296,13 @@ export default function Login() {
   );
 }
 
-function Field({ label, icon, children }) {
+function Field({ label, children }) {
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-semibold text-slate-500">
+      <label className="mb-1.5 block text-xs font-medium text-slate-500">
         {label}
       </label>
-      <div className="relative">
-        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
-          {icon}
-        </span>
-        {children}
-      </div>
+      <div className="relative">{children}</div>
     </div>
   );
 }

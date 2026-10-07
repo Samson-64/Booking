@@ -21,9 +21,9 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-slate-600 text-white shadow-sm shadow-slate-700/20 hover:bg-slate-500 focus-visible:ring-slate-500",
+      "bg-accent-700 text-white shadow-sm shadow-accent-900/20 hover:bg-accent-800 focus-visible:ring-accent-500",
     gradient:
-      "bg-indigo-600 text-white shadow-sm hover:bg-indigo-700 focus-visible:ring-indigo-500",
+      "bg-accent-700 text-white shadow-sm hover:bg-accent-800 focus-visible:ring-accent-400",
     secondary:
       "bg-white text-slate-700 border border-slate-200/80 shadow-2xs hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300 focus-visible:ring-slate-400",
     dark: "bg-slate-900 text-white shadow-sm hover:bg-slate-800 focus-visible:ring-slate-700",
@@ -36,7 +36,7 @@ export default function Button({
     ghost:
       "text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-slate-400",
     accent:
-      "bg-indigo-50 text-indigo-700 border border-indigo-200/80 hover:bg-indigo-100 focus-visible:ring-indigo-500",
+      "bg-accent-50 text-accent-700 border border-accent-200/80 hover:bg-accent-100 focus-visible:ring-accent-500",
   };
 
   const currentSize = sizeVariants[size] || sizeVariants.md;

@@ -3,7 +3,7 @@ import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { fetchMyBookings } from "../api/booking";
 import Button from "../components/Button";
-import Spinner from "../components/Spinner";
+import Skeleton from "../components/Skeleton";
 import ErrorState from "../components/ErrorState";
 import EmptyState from "../components/EmptyState";
 import { StatusBadge } from "../components/StatusBadge";
@@ -124,8 +124,8 @@ export default function Dashboard() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className=" sm:text-2xl font-bold tracking-tight text-gray-900">
-              {greeting}, <span className="text-gray-500">{user?.name}</span>
+            <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">
+              {greeting}, <span className="text-slate-500">{user?.name}</span>
             </h1>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function Dashboard() {
             size="sm"
             onClick={() => navigate("/appointments")}
             icon={<Plus className="h-4 w-4" />}
-            className="bg-slate-900 border-none"
+            className="bg-accent-700 hover:bg-accent-800 border-none"
           >
             Book Appointment
           </Button>
@@ -165,7 +165,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-2xl font-bold tracking-tight">
+            <span className="text-2xl font-bold tracking-tight tabular-nums">
               {todayBookings.length}
             </span>
             <span className="text-[10px] text-slate-200">
@@ -189,12 +189,12 @@ export default function Dashboard() {
             <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
               Appointments
             </span>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-accent-50 text-accent-600">
               <UserCheck className="h-3.5 w-3.5" />
             </div>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-2xl font-bold tracking-tight text-slate-900">
+            <span className="text-2xl font-bold tracking-tight text-slate-900 tabular-nums">
               {upcomingAppointments}
             </span>
             <span className="text-[10px] font-medium text-emerald-600 flex items-center gap-0.5">
@@ -205,7 +205,7 @@ export default function Dashboard() {
             <span className="text-slate-400">Scheduled</span>
             <Link
               to="/appointments"
-              className="font-semibold text-indigo-600 hover:text-indigo-700"
+              className="font-semibold text-accent-600 hover:text-accent-700"
             >
               Book →
             </Link>
@@ -223,7 +223,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-2xl font-bold tracking-tight text-slate-900">
+            <span className="text-2xl font-bold tracking-tight text-slate-900 tabular-nums">
               {upcomingParking}
             </span>
             <span className="text-[10px] font-medium text-slate-600">
@@ -252,7 +252,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-2xl font-bold tracking-tight text-slate-900">
+            <span className="text-2xl font-bold tracking-tight text-slate-900 tabular-nums">
               {confirmedCount}
             </span>
             <span className="text-[10px] font-medium text-slate-500">
@@ -316,7 +316,25 @@ export default function Dashboard() {
         {error ? (
           <ErrorState message={error} />
         ) : bookings === null ? (
-          <Spinner label="Loading bookings and schedules…" />
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {[0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-2xs"
+              >
+                <div className="flex items-center justify-between">
+                  <Skeleton className="h-4 w-28" />
+                  <Skeleton className="h-9 w-9 rounded-xl" />
+                </div>
+                <Skeleton className="mt-3 h-4 w-24" />
+                <Skeleton className="mt-2 h-3 w-32" />
+                <div className="mt-3 flex gap-2 border-t border-slate-100 pt-3">
+                  <Skeleton className="h-7 w-full rounded-lg" />
+                  <Skeleton className="h-7 w-20 rounded-lg" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : filteredBookings.length === 0 ? (
           <EmptyState
             title="No bookings match your current criteria"
@@ -366,7 +384,7 @@ export default function Dashboard() {
                       <div className="flex items-center gap-2.5">
                         <div
                           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white shadow-2xs ${
-                            isAppt ? "bg-indigo-600" : "bg-slate-900"
+                            isAppt ? "bg-accent-600" : "bg-navy-900"
                           }`}
                         >
                           {initial}
@@ -391,7 +409,7 @@ export default function Dashboard() {
                           {b.startTime} – {b.endTime}
                         </span>
                       </div>
-                      <Badge color={isAppt ? "indigo" : "slate"} size="sm">
+                      <Badge color={isAppt ? "accent" : "slate"} size="sm">
                         {formatShortDate(b.date)}
                       </Badge>
                     </div>
@@ -427,8 +445,8 @@ export default function Dashboard() {
           <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl animate-in zoom-in-95">
             <div className="flex items-start justify-between border-b border-slate-100 pb-4">
               <div>
-                <span className="text-xs font-semibold text-slate-900 uppercase tracking-wider">
-                  Booking Summary
+                <span className="text-xs font-semibold text-slate-900">
+                  Booking summary
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mt-0.5">
                   {selectedBooking.type === "APPOINTMENT"
@@ -484,9 +502,8 @@ export default function Dashboard() {
                 Close
               </Button>
               <Button
-                // variant="primary"
+                variant="dark"
                 size="sm"
-                className="bg-slate-900"
                 onClick={() => {
                   setSelectedBooking(null);
                   navigate("/my-bookings");
