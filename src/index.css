@@ -1,6 +1,55 @@
 @import "tailwindcss";
 
+/* ---------- Geist (self-hosted, satisfies CSP font-src 'self') ---------- */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
+  /* ---------- Typography ---------- */
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* ---------- Neutrals (slate, cool family only) ---------- */
   --color-brand-50: #f8fafc;
   --color-brand-100: #f1f5f9;
   --color-brand-200: #e2e8f0;
@@ -17,21 +66,44 @@
   --color-navy-900: #0f172a;
   --color-navy-950: #09131f;
 
-  --color-accent-500: #6366f1;
-  --color-accent-600: #4f46e5;
-  --color-accent-700: #4338ca;
+  /* ---------- Accent: unified deep navy blue ---------- */
+  --color-accent-50: #f2f7fd;
+  --color-accent-100: #e3eef9;
+  --color-accent-200: #c7ddf3;
+  --color-accent-300: #9cc3e9;
+  --color-accent-400: #669fd8;
+  --color-accent-500: #3a76bd;
+  --color-accent-600: #21539a;
+  --color-accent-700: #102c67;
+  --color-accent-800: #062b5e;
+  --color-accent-900: #071827;
+  --color-accent-950: #040e17;
+
+  /* ---------- Shadows: navy-tinted, single light source ---------- */
+  --shadow-2xs: 0 1px 2px 0 rgb(16 44 103 / 0.06);
+  --shadow-xs: 0 1px 2px 0 rgb(16 44 103 / 0.09);
+  --shadow-sm: 0 1px 3px 0 rgb(16 44 103 / 0.1), 0 1px 2px -1px rgb(16 44 103 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(16 44 103 / 0.1), 0 2px 4px -2px rgb(16 44 103 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(16 44 103 / 0.12), 0 4px 6px -4px rgb(16 44 103 / 0.12);
+  --shadow-xl: 0 20px 25px -5px rgb(16 44 103 / 0.14), 0 8px 10px -6px rgb(16 44 103 / 0.12);
 }
 
 @layer base {
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: var(--color-brand-50);
+    color: var(--color-navy-900);
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
   }
 }
 
